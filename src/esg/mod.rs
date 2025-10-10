@@ -240,7 +240,7 @@ impl ESGService {
 
     fn calculate_social_score(&self, social: &SocialMetrics) -> f64 {
         (social.safety_score + social.user_satisfaction + social.community_impact + 
-         social.accessibility_score + social.diversity_inclusion + social.employee_wellbeing) / 100.0) / 6.0
+         social.accessibility_score + social.diversity_inclusion + social.employee_wellbeing) / 100.0 / 6.0
     }
 
     fn calculate_governance_score(&self, governance: &GovernanceMetrics) -> f64 {

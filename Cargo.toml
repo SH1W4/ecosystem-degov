@@ -10,50 +10,19 @@ tokio = { version = "1.0", features = ["full"] }
 tower = "0.4"
 tower-http = { version = "0.5", features = ["cors", "trace"] }
 
-# Database
-sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "chrono", "uuid"] }
-chrono = { version = "0.4", features = ["serde"] }
-uuid = { version = "1.0", features = ["v4", "serde"] }
-
 # Serialization
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
-# HTTP Client
-reqwest = { version = "0.11", features = ["json"] }
-
-# Blockchain
-ethers = { version = "2.0", features = ["rustls"] }
-web3 = "0.19"
-
-# AI/ML
-candle-core = "0.3"
-candle-nn = "0.3"
-candle-transformers = "0.3"
-tokenizers = "0.15"
-ndarray = "0.15"
-
-# ESG Specific
-carbon-footprint = "0.1"
-sustainability-metrics = "0.1"
-
-# Logging
-tracing = "0.1"
-tracing-subscriber = { version = "0.3", features = ["env-filter"] }
-
-# Configuration
-config = "0.14"
-dotenvy = "0.15"
+# UUID and Time
+uuid = { version = "1.0", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
 
 # Error Handling
 anyhow = "1.0"
-thiserror = "1.0"
 
-# Async
-futures = "0.3"
-
-# Time
-time = { version = "0.3", features = ["serde"] }
+# Logging
+env_logger = "0.10"
 
 [dev-dependencies]
 tokio-test = "0.4"
