@@ -34,6 +34,12 @@ O **ESG Token Ecosystem Rust Backend** é um backend de alta performance desenvo
 - **🧠 IA Integrada**: Computer Vision, NLP, Analytics, Predictions
 - **🔗 Blockchain**: Suporte para múltiplas blockchains
 - **📊 ESG Metrics**: Cálculo automático de métricas ESG
+- **🪙 GST Integration**: Sistema completo de tokens GST integrado
+- **🛒 Smart Cart**: Integração com carrinho inteligente
+- **📄 NFE to NFT**: Conversão automática de notas fiscais em NFTs
+- **🎮 Gamification**: Sistema de gamificação e recompensas
+- **🏛️ Governance**: Governança descentralizada
+- **🛍️ Marketplace**: Marketplace de tokens GST
 - **🔒 Segurança**: Autenticação e autorização robustas
 - **📈 Analytics**: Análise de dados em tempo real
 - **🌍 Escalabilidade**: Arquitetura microserviços
@@ -198,6 +204,37 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
+## 🪙 GST Integration
+
+O backend inclui integração completa com o **GST (GuardFlow Sustainability Token)** ecosystem:
+
+### 🏗️ GST Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    GST ECOSYSTEM                           │
+├─────────────────────────────────────────────────────────────┤
+│  Token Management  │  Marketplace    │  Gamification      │
+│  • GST Tokens      │  • List Items   │  • User Levels      │
+│  • Balances        │  • Buy Items    │  • Missions         │
+│  • Transfers       │  • Categories   │  • Achievements     │
+├─────────────────────────────────────────────────────────────┤
+│  Governance        │  NFE Converter  │  Smart Cart         │
+│  • Proposals       │  • NFe to NFT   │  • Cart Processing  │
+│  • Voting          │  • Metadata     │  • Sustainability   │
+│  • Execution       │  • Blockchain   │  • Rewards          │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 🚀 GST Features
+
+- **🪙 Token Management**: Criação, transferência e gestão de tokens GST
+- **🛍️ Marketplace**: Sistema de marketplace para troca de tokens
+- **🎮 Gamification**: Sistema de níveis, missões e conquistas
+- **🏛️ Governance**: Sistema de governança descentralizada
+- **📄 NFE to NFT**: Conversão automática de notas fiscais em NFTs únicos
+- **🛒 Smart Cart**: Integração com carrinho inteligente para processamento automático
+
 ## 🔗 API Endpoints
 
 ### ESG Metrics
@@ -234,6 +271,47 @@ POST /api/v1/tokens/burn
 GET /api/v1/analytics/trends
 GET /api/v1/analytics/benchmarks
 GET /api/v1/analytics/reports
+```
+
+### GST Token Management
+
+```http
+GET /api/v1/gst/tokens/{token_id}
+GET /api/v1/gst/balance/{address}/{token_id}
+POST /api/v1/gst/transfer
+```
+
+### GST Marketplace
+
+```http
+POST /api/v1/gst/marketplace/list
+POST /api/v1/gst/marketplace/buy
+```
+
+### GST Gamification
+
+```http
+GET /api/v1/gst/gamification/{user_id}
+POST /api/v1/gst/gamification/complete-mission
+```
+
+### GST Governance
+
+```http
+POST /api/v1/gst/governance/propose
+POST /api/v1/gst/governance/vote
+```
+
+### NFE to NFT Conversion
+
+```http
+POST /api/v1/gst/nfe/convert
+```
+
+### Smart Cart Integration
+
+```http
+POST /api/v1/gst/smart-cart/process
 ```
 
 ## 🧪 Testing
@@ -469,21 +547,29 @@ pub fn check_permission(role: &Role, resource: &str, action: &str) -> bool {
 - [x] Basic ESG metrics
 - [x] Health checks
 
-### Phase 2: AI Integration (🔄 In Progress)
+### Phase 2: AI Integration (✅ Completed)
 - [x] Computer Vision
 - [x] NLP services
 - [x] Predictions
 - [x] Recommendations
-- [ ] Advanced ML models
+- [x] Advanced ML models
 
-### Phase 3: Blockchain Integration (📋 Planned)
+### Phase 3: Blockchain Integration (✅ Completed)
 - [x] Ethereum support
 - [x] Polygon support
 - [x] Celo support
 - [x] XRPL support
-- [ ] Advanced DeFi features
+- [x] Advanced DeFi features
 
-### Phase 4: Advanced Features (📋 Planned)
+### Phase 4: GST Integration (✅ Completed)
+- [x] GST Token Management
+- [x] GST Marketplace
+- [x] GST Gamification
+- [x] GST Governance
+- [x] NFE to NFT Conversion
+- [x] Smart Cart Integration
+
+### Phase 5: Advanced Features (📋 Planned)
 - [ ] Real-time streaming
 - [ ] Advanced analytics
 - [ ] Machine learning pipelines
