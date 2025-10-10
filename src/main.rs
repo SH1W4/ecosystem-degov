@@ -9,6 +9,9 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use tokio::net::TcpListener;
 
+mod gst;
+use gst::*;
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct HealthResponse {
     pub status: String,
@@ -194,6 +197,133 @@ async fn get_trends() -> Result<Json<HashMap<String, Vec<f64>>>, StatusCode> {
     Ok(Json(trends))
 }
 
+// GST Token endpoints
+async fn get_gst_token_info(Path(token_id): Path<String>) -> Result<Json<GSTToken>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let token = gst_service.get_token_info(&token_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(token))
+}
+
+async fn get_gst_balance(Path((address, token_id)): Path<(String, String)>) -> Result<Json<GSTBalance>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let balance = gst_service.get_balance(&address, &token_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(balance))
+}
+
+async fn transfer_gst_tokens(Json(payload): Json<HashMap<String, String>>) -> Result<Json<GSTTransaction>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let from = payload.get("from").unwrap_or(&"0x0".to_string()).clone();
+    let to = payload.get("to").unwrap_or(&"0x0".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    let token_id = payload.get("token_id").unwrap_or(&"GST".to_string()).clone();
+    
+    let transaction = gst_service.transfer_tokens(&from, &to, amount, &token_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(transaction))
+}
+
+// GST Marketplace endpoints
+async fn list_marketplace_item(Json(payload): Json<HashMap<String, String>>) -> Result<Json<GSTMarketplaceItem>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let seller = payload.get("seller").unwrap_or(&"0x0".to_string()).clone();
+    let token_id = payload.get("token_id").unwrap_or(&"GST".to_string()).clone();
+    let price = payload.get("price").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    let quantity = payload.get("quantity").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    let description = payload.get("description").unwrap_or(&"".to_string()).clone();
+    let category = payload.get("category").unwrap_or(&"general".to_string()).clone();
+    
+    let item = gst_service.list_item(&seller, &token_id, price, quantity, &description, &category).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(item))
+}
+
+async fn buy_marketplace_item(Json(payload): Json<HashMap<String, String>>) -> Result<Json<GSTTransaction>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let buyer = payload.get("buyer").unwrap_or(&"0x0".to_string()).clone();
+    let item_id = payload.get("item_id").unwrap_or(&"".to_string()).clone();
+    let quantity = payload.get("quantity").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    
+    let transaction = gst_service.buy_item(&buyer, &item_id, quantity).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(transaction))
+}
+
+// GST Gamification endpoints
+async fn get_user_gamification(Path(user_id): Path<String>) -> Result<Json<GSTGamification>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let gamification = gst_service.get_user_gamification(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(gamification))
+}
+
+async fn complete_mission(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let mission_id = payload.get("mission_id").unwrap_or(&"".to_string()).clone();
+    
+    let rewards = gst_service.complete_mission(&user_id, &mission_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("rewards".to_string(), rewards);
+    Ok(Json(response))
+}
+
+// GST Governance endpoints
+async fn create_governance_proposal(Json(payload): Json<HashMap<String, String>>) -> Result<Json<GSTGovernanceProposal>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let proposer = payload.get("proposer").unwrap_or(&"0x0".to_string()).clone();
+    let title = payload.get("title").unwrap_or(&"".to_string()).clone();
+    let description = payload.get("description").unwrap_or(&"".to_string()).clone();
+    
+    let proposal = gst_service.create_proposal(&proposer, &title, &description).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(proposal))
+}
+
+async fn vote_on_proposal(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let voter = payload.get("voter").unwrap_or(&"0x0".to_string()).clone();
+    let proposal_id = payload.get("proposal_id").unwrap_or(&"".to_string()).clone();
+    let vote = payload.get("vote").unwrap_or(&"false".to_string()).parse::<bool>().unwrap_or(false);
+    
+    gst_service.vote_on_proposal(&voter, &proposal_id, vote).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("status".to_string(), "success".to_string());
+    Ok(Json(response))
+}
+
+// NFE to NFT endpoints
+async fn convert_nfe_to_nft(Json(payload): Json<HashMap<String, String>>) -> Result<Json<NFEToNFT>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let nfe_id = payload.get("nfe_id").unwrap_or(&"".to_string()).clone();
+    let owner = payload.get("owner").unwrap_or(&"0x0".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
+    let sustainability_score = payload.get("sustainability_score").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
+    
+    let nft = gst_service.convert_nfe_to_nft(&nfe_id, &owner, amount, sustainability_score).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(nft))
+}
+
+// Smart Cart endpoints
+async fn process_smart_cart(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let cart_id = payload.get("cart_id").unwrap_or(&"".to_string()).clone();
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let sustainability_bonus = payload.get("sustainability_bonus").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
+    
+    let cart_data = SmartCartData {
+        cart_id,
+        user_id,
+        items: vec![],
+        total_amount: 0.0,
+        sustainability_bonus,
+        gst_rewards: 0,
+        nfe_generated: false,
+        nft_created: false,
+    };
+    
+    let (gst_rewards, nft_created) = gst_service.process_smart_cart(cart_data).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    
+    let mut response = HashMap::new();
+    response.insert("gst_rewards".to_string(), gst_rewards.to_string());
+    response.insert("nft_created".to_string(), nft_created.to_string());
+    Ok(Json(response))
+}
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Initialize logging
@@ -221,7 +351,30 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         
         // Analytics
         .route("/api/v1/analytics", get(get_analytics))
-        .route("/api/v1/analytics/trends", get(get_trends));
+        .route("/api/v1/analytics/trends", get(get_trends))
+        
+        // GST Token Management
+        .route("/api/v1/gst/tokens/:token_id", get(get_gst_token_info))
+        .route("/api/v1/gst/balance/:address/:token_id", get(get_gst_balance))
+        .route("/api/v1/gst/transfer", post(transfer_gst_tokens))
+        
+        // GST Marketplace
+        .route("/api/v1/gst/marketplace/list", post(list_marketplace_item))
+        .route("/api/v1/gst/marketplace/buy", post(buy_marketplace_item))
+        
+        // GST Gamification
+        .route("/api/v1/gst/gamification/:user_id", get(get_user_gamification))
+        .route("/api/v1/gst/gamification/complete-mission", post(complete_mission))
+        
+        // GST Governance
+        .route("/api/v1/gst/governance/propose", post(create_governance_proposal))
+        .route("/api/v1/gst/governance/vote", post(vote_on_proposal))
+        
+        // NFE to NFT Conversion
+        .route("/api/v1/gst/nfe/convert", post(convert_nfe_to_nft))
+        
+        // Smart Cart Integration
+        .route("/api/v1/gst/smart-cart/process", post(process_smart_cart));
 
     // Start the server
     let listener = TcpListener::bind("127.0.0.1:3000").await?;
