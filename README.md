@@ -234,6 +234,9 @@ O backend inclui integração completa com o **GST (GuardFlow Sustainability Tok
 - **🏛️ Governance**: Sistema de governança descentralizada
 - **📄 NFE to NFT**: Conversão automática de notas fiscais em NFTs únicos
 - **🛒 Smart Cart**: Integração com carrinho inteligente para processamento automático
+- **🚗 GuardDrive Integration**: Integração nativa com ecossistema GuardDrive
+- **🔄 Cross-Platform**: Tokens transferíveis entre GuardDrive e GuardFlow
+- **📊 Unified Analytics**: Analytics ESG unificado entre plataformas
 
 ## 🔗 API Endpoints
 
@@ -312,6 +315,22 @@ POST /api/v1/gst/nfe/convert
 
 ```http
 POST /api/v1/gst/smart-cart/process
+```
+
+### GuardDrive Integration
+
+```http
+POST /api/v1/gst/guardrive/sync
+GET /api/v1/gst/guardrive/vehicle/{vehicle_id}
+POST /api/v1/gst/guardrive/telemetry
+```
+
+### Cross-Platform Integration
+
+```http
+POST /api/v1/gst/cross-platform/transfer
+GET /api/v1/gst/cross-platform/balance
+POST /api/v1/gst/cross-platform/rewards
 ```
 
 ## 🧪 Testing

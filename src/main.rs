@@ -10,7 +10,9 @@ use std::collections::HashMap;
 use tokio::net::TcpListener;
 
 mod gst;
+mod guardrive;
 use gst::*;
+use guardrive::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct HealthResponse {
@@ -298,31 +300,89 @@ async fn convert_nfe_to_nft(Json(payload): Json<HashMap<String, String>>) -> Res
     Ok(Json(nft))
 }
 
-// Smart Cart endpoints
-async fn process_smart_cart(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
-    let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-    let cart_id = payload.get("cart_id").unwrap_or(&"".to_string()).clone();
-    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
-    let sustainability_bonus = payload.get("sustainability_bonus").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
-    
-    let cart_data = SmartCartData {
-        cart_id,
-        user_id,
-        items: vec![],
-        total_amount: 0.0,
-        sustainability_bonus,
-        gst_rewards: 0,
-        nfe_generated: false,
-        nft_created: false,
-    };
-    
-    let (gst_rewards, nft_created) = gst_service.process_smart_cart(cart_data).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-    
-    let mut response = HashMap::new();
-    response.insert("gst_rewards".to_string(), gst_rewards.to_string());
-    response.insert("nft_created".to_string(), nft_created.to_string());
-    Ok(Json(response))
-}
+    // Smart Cart endpoints
+    async fn process_smart_cart(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+        let gst_service = GSTService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        let cart_id = payload.get("cart_id").unwrap_or(&"".to_string()).clone();
+        let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+        let sustainability_bonus = payload.get("sustainability_bonus").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
+        
+        let cart_data = SmartCartData {
+            cart_id,
+            user_id,
+            items: vec![],
+            total_amount: 0.0,
+            sustainability_bonus,
+            gst_rewards: 0,
+            nfe_generated: false,
+            nft_created: false,
+        };
+        
+        let (gst_rewards, nft_created) = gst_service.process_smart_cart(cart_data).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        
+        let mut response = HashMap::new();
+        response.insert("gst_rewards".to_string(), gst_rewards.to_string());
+        response.insert("nft_created".to_string(), nft_created.to_string());
+        Ok(Json(response))
+    }
+
+    // GuardDrive Integration endpoints
+    async fn sync_guardrive_telemetry(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+        let guardrive_service = GuardDriveService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        let vehicle_id = payload.get("vehicle_id").unwrap_or(&"".to_string()).clone();
+        let driving_efficiency = payload.get("driving_efficiency").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
+        let carbon_footprint = payload.get("carbon_footprint").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
+        let sustainability_score = payload.get("sustainability_score").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
+        
+        let telemetry = GuardDriveTelemetry {
+            vehicle_id,
+            timestamp: chrono::Utc::now().to_rfc3339(),
+            driving_efficiency,
+            carbon_footprint,
+            fuel_consumption: 0.0,
+            distance_traveled: 0.0,
+            sustainability_score,
+            eco_driving_score: 0.0,
+        };
+        
+        let tokens = guardrive_service.sync_telemetry(telemetry).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        
+        let mut response = HashMap::new();
+        response.insert("esg_tokens".to_string(), tokens);
+        Ok(Json(response))
+    }
+
+    async fn get_guardrive_vehicle(Path(vehicle_id): Path<String>) -> Result<Json<GuardDriveVehicle>, StatusCode> {
+        let guardrive_service = GuardDriveService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        let vehicle = guardrive_service.get_vehicle_info(&vehicle_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        Ok(Json(vehicle))
+    }
+
+    // Cross-Platform Integration endpoints
+    async fn get_cross_platform_balance(Path(user_id): Path<String>) -> Result<Json<CrossPlatformBalance>, StatusCode> {
+        let cross_platform_service = CrossPlatformService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        let balance = cross_platform_service.get_unified_balance(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        Ok(Json(balance))
+    }
+
+    async fn transfer_cross_platform_tokens(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+        let cross_platform_service = CrossPlatformService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        let from_platform = payload.get("from_platform").unwrap_or(&"".to_string()).clone();
+        let to_platform = payload.get("to_platform").unwrap_or(&"".to_string()).clone();
+        let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+        
+        let final_amount = cross_platform_service.transfer_tokens(&from_platform, &to_platform, amount).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        
+        let mut response = HashMap::new();
+        response.insert("final_amount".to_string(), final_amount);
+        Ok(Json(response))
+    }
+
+    async fn get_unified_esg_profile(Path(user_id): Path<String>) -> Result<Json<UnifiedESGProfile>, StatusCode> {
+        let guardrive_service = GuardDriveService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        let profile = guardrive_service.get_unified_profile(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        Ok(Json(profile))
+    }
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -373,8 +433,17 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         // NFE to NFT Conversion
         .route("/api/v1/gst/nfe/convert", post(convert_nfe_to_nft))
         
-        // Smart Cart Integration
-        .route("/api/v1/gst/smart-cart/process", post(process_smart_cart));
+            // Smart Cart Integration
+            .route("/api/v1/gst/smart-cart/process", post(process_smart_cart))
+            
+            // GuardDrive Integration
+            .route("/api/v1/gst/guardrive/sync", post(sync_guardrive_telemetry))
+            .route("/api/v1/gst/guardrive/vehicle/:vehicle_id", get(get_guardrive_vehicle))
+            
+            // Cross-Platform Integration
+            .route("/api/v1/gst/cross-platform/balance/:user_id", get(get_cross_platform_balance))
+            .route("/api/v1/gst/cross-platform/transfer", post(transfer_cross_platform_tokens))
+            .route("/api/v1/gst/cross-platform/profile/:user_id", get(get_unified_esg_profile));
 
     // Start the server
     let listener = TcpListener::bind("127.0.0.1:3000").await?;
