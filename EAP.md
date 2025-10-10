@@ -5,9 +5,9 @@
 
 **Plano de Arquitetura Empresarial para Backend ESG Token Ecosystem**
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/SH1W4/esg-token-backend)
-[![Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen.svg)](https://github.com/SH1W4/esg-token-backend)
-[![Architecture](https://img.shields.io/badge/architecture-Microservices-orange.svg)](https://github.com/SH1W4/esg-token-backend)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/SH1W4/ecosystem-degov)
+[![Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen.svg)](https://github.com/SH1W4/ecosystem-degov)
+[![Architecture](https://img.shields.io/badge/architecture-Microservices-orange.svg)](https://github.com/SH1W4/ecosystem-degov)
 
 </div>
 
@@ -651,3 +651,4 @@ API_KEY=your_production_api_key
 Made with 🦀 by SH1W4 | High-performance ESG tokenization backend!
 
 </div>
+

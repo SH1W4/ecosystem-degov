@@ -5,9 +5,9 @@
 
 **Mapa Completo do Ecossistema ESG Token Ecosystem**
 
-[![Ecosystem](https://img.shields.io/badge/ecosystem-complete-brightgreen.svg)](https://github.com/SH1W4/guardflow)
-[![Architecture](https://img.shields.io/badge/architecture-microservices-orange.svg)](https://github.com/SH1W4/guardflow)
-[![Status](https://img.shields.io/badge/status-production%20ready-blue.svg)](https://github.com/SH1W4/guardflow)
+[![Ecosystem](https://img.shields.io/badge/ecosystem-complete-brightgreen.svg)](https://github.com/SH1W4/ecosystem-degov)
+[![Architecture](https://img.shields.io/badge/architecture-microservices-orange.svg)](https://github.com/SH1W4/ecosystem-degov)
+[![Status](https://img.shields.io/badge/status-production%20ready-blue.svg)](https://github.com/SH1W4/ecosystem-degov)
 
 </div>
 
@@ -192,13 +192,15 @@ graph TB
   - Documentação automática
 
 #### 6. **ESG Token Ecosystem** 🌍
-- **Repositório**: `ecosystem-gst`
+- **Repositório**: `ecosystem-degov`
 - **Tecnologia**: Solidity + Hardhat + TypeScript
 - **Funcionalidades**:
   - Smart contracts ESG
   - Tokenização de métricas
   - Marketplace de tokens
   - Governança descentralizada
+  - EcoToken Hybrid Ecosystem (6 tokens)
+  - Blockchain híbrida (Privada + Pública)
 
 ## 🔄 Fluxo de Dados do Ecossistema
 
@@ -304,23 +306,56 @@ class AIServices:
 
 ### Blockchain Components
 
-#### Smart Contracts
+#### EcoToken Hybrid Ecosystem (6 Tokens)
+
+##### Blockchain Privada (Hyperledger Besu)
 ```solidity
-// Contratos principais
-contract GSTToken is ERC20 {              // Token GST
-    // Implementação do token
+// EcoScore (ECS) - Scoring ESG Individual
+contract EcoScore is ERC20 {
+    // Token ERC20 para scoring ESG privado
+    // Mintagem limitada, queima automática, privacidade
 }
 
-contract InvoiceNFT is ERC721 {          // NFT de Nota Fiscal
-    // Implementação do NFT
+// CarbonCredit (CCR) - Créditos de Carbono
+contract CarbonCredit is ERC20 {
+    // Token ERC20 para compensação de carbono
+    // Verificação IoT, aposentadoria, mercado real
 }
 
-contract GSTMarketplace {                 // Marketplace
-    // Implementação do marketplace
+// EcoCertificate (ECR) - Certificados Únicos
+contract EcoCertificate is ERC721 {
+    // NFTs únicos de sustentabilidade
+    // Raridade dinâmica, metadados ESG, transferência
+}
+```
+
+##### Blockchain Pública (Ethereum/Polygon/Celo)
+```solidity
+// EcoToken (ECT) - Token Principal
+contract EcoToken is ERC20 {
+    // Token ERC20 principal para pagamentos
+    // Queima automática, staking, governança
 }
 
-contract GSTGamification {                // Gamificação
-    // Implementação da gamificação
+// EcoStake (EST) - Governança e Staking
+contract EcoStake is ERC20 {
+    // Token ERC20 para governança e staking
+    // APY variável, votação ponderada, recompensas
+}
+
+// EcoGem (EGM) - Token Premium
+contract EcoGem is ERC20 {
+    // Token ERC20 para usuários VIP
+    // Escassez artificial, benefícios exclusivos
+}
+```
+
+##### Bridge Interoperável
+```solidity
+// EcoBridge - Conectividade Cross-Chain
+contract EcoBridge {
+    // Transferência segura entre blockchains
+    // Verificação de identidade, compliance automático
 }
 ```
 
@@ -720,3 +755,4 @@ git push origin feature/nova-funcionalidade
 Made with 🦀 by SH1W4 | Complete ESG tokenization ecosystem!
 
 </div>
+

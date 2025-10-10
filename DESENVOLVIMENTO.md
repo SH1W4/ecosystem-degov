@@ -1088,3 +1088,4 @@ pub fn create_jwt(user_id: &str, role: &str) -> Result<String> {
 Made with 🦀 by SH1W4 | High-performance ESG tokenization backend!
 
 </div>
+

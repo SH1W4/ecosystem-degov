@@ -384,3 +384,4 @@ pub struct TokenTransaction {
     pub status: crate::models::TransactionStatusType,
     pub timestamp: DateTime<Utc>,
 }
+

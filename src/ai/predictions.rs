@@ -1210,3 +1210,4 @@ impl MarketAnalyzer {
         })
     }
 }
+

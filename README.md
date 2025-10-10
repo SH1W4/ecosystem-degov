@@ -7,9 +7,9 @@
 [![SQLx](https://img.shields.io/badge/SQLx-0.7-green.svg)](https://github.com/launchbadge/sqlx)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey.svg)](https://rust-lang.org)
-[![Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen.svg)](https://github.com/SH1W4/esg-token-backend)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](https://github.com/SH1W4/esg-token-backend)
-[![Performance](https://img.shields.io/badge/performance-optimized-blue.svg)](https://github.com/SH1W4/esg-token-backend)
+[![Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen.svg)](https://github.com/SH1W4/ecosystem-degov)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](https://github.com/SH1W4/ecosystem-degov)
+[![Performance](https://img.shields.io/badge/performance-optimized-blue.svg)](https://github.com/SH1W4/ecosystem-degov)
 
 **Backend de Alta Performance para Tokenização de Métricas ESG**
 
