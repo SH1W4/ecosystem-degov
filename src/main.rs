@@ -10,11 +10,11 @@ use std::collections::HashMap;
 use tokio::net::TcpListener;
 
 mod gst;
-mod guardrive;
+mod mobility;
 mod ecotoken;
 use gst::*;
-use guardrive::*;
-use guardrive::cross_platform::{CrossPlatformBalance, CrossPlatformService};
+use mobility::*;
+use mobility::cross_platform::{CrossPlatformBalance, CrossPlatformService};
 use ecotoken::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -330,14 +330,14 @@ async fn convert_nfe_to_nft(Json(payload): Json<HashMap<String, String>>) -> Res
     }
 
     // GuardDrive Integration endpoints
-    async fn sync_guardrive_telemetry(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
-        let guardrive_service = GuardDriveService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    async fn sync_mobility_telemetry(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+        let mobility_service = MobilityService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
         let vehicle_id = payload.get("vehicle_id").unwrap_or(&"".to_string()).clone();
         let driving_efficiency = payload.get("driving_efficiency").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
         let carbon_footprint = payload.get("carbon_footprint").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
         let sustainability_score = payload.get("sustainability_score").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
         
-        let telemetry = GuardDriveTelemetry {
+        let telemetry = MobilityTelemetry {
             vehicle_id,
             timestamp: chrono::Utc::now().to_rfc3339(),
             driving_efficiency,
@@ -348,16 +348,16 @@ async fn convert_nfe_to_nft(Json(payload): Json<HashMap<String, String>>) -> Res
             eco_driving_score: 0.0,
         };
         
-        let tokens = guardrive_service.sync_telemetry(telemetry).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        let tokens = mobility_service.sync_telemetry(telemetry).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
         
         let mut response = HashMap::new();
         response.insert("esg_tokens".to_string(), tokens);
         Ok(Json(response))
     }
 
-    async fn get_guardrive_vehicle(Path(vehicle_id): Path<String>) -> Result<Json<GuardDriveVehicle>, StatusCode> {
-        let guardrive_service = GuardDriveService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-        let vehicle = guardrive_service.get_vehicle_info(&vehicle_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    async fn get_mobility_vehicle(Path(vehicle_id): Path<String>) -> Result<Json<MobilityVehicle>, StatusCode> {
+        let mobility_service = MobilityService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+        let vehicle = mobility_service.get_vehicle_info(&vehicle_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
         Ok(Json(vehicle))
     }
 
@@ -382,8 +382,8 @@ async fn convert_nfe_to_nft(Json(payload): Json<HashMap<String, String>>) -> Res
     }
 
 async fn get_unified_esg_profile(Path(user_id): Path<String>) -> Result<Json<UnifiedESGProfile>, StatusCode> {
-    let guardrive_service = GuardDriveService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-    let profile = guardrive_service.get_unified_profile(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mobility_service = MobilityService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let profile = mobility_service.get_unified_profile(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
     Ok(Json(profile))
 }
 
@@ -790,8 +790,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             .route("/api/v1/gst/smart-cart/process", post(process_smart_cart))
             
             // GuardDrive Integration
-            .route("/api/v1/gst/guardrive/sync", post(sync_guardrive_telemetry))
-            .route("/api/v1/gst/guardrive/vehicle/:vehicle_id", get(get_guardrive_vehicle))
+            .route("/api/v1/gst/mobility/sync", post(sync_mobility_telemetry))
+            .route("/api/v1/gst/mobility/vehicle/:vehicle_id", get(get_mobility_vehicle))
             
             // Cross-Platform Integration
             .route("/api/v1/gst/cross-platform/balance/:user_id", get(get_cross_platform_balance))
