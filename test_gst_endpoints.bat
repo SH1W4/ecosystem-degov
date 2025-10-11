@@ -57,3 +57,4 @@ echo.
 
 echo 🎉 Testes GST concluídos!
 pause
+

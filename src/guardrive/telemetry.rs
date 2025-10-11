@@ -35,3 +35,4 @@ impl TelemetryService {
         Ok(base_tokens + eco_bonus)
     }
 }
+

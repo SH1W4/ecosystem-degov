@@ -66,3 +66,4 @@ try {
 
 Write-Host "`n🎉 Testes concluídos!" -ForegroundColor Green
 
+

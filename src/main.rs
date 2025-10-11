@@ -11,8 +11,11 @@ use tokio::net::TcpListener;
 
 mod gst;
 mod guardrive;
+mod ecotoken;
 use gst::*;
 use guardrive::*;
+use guardrive::cross_platform::{CrossPlatformBalance, CrossPlatformService};
+use ecotoken::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct HealthResponse {
@@ -378,11 +381,361 @@ async fn convert_nfe_to_nft(Json(payload): Json<HashMap<String, String>>) -> Res
         Ok(Json(response))
     }
 
-    async fn get_unified_esg_profile(Path(user_id): Path<String>) -> Result<Json<UnifiedESGProfile>, StatusCode> {
-        let guardrive_service = GuardDriveService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-        let profile = guardrive_service.get_unified_profile(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-        Ok(Json(profile))
-    }
+async fn get_unified_esg_profile(Path(user_id): Path<String>) -> Result<Json<UnifiedESGProfile>, StatusCode> {
+    let guardrive_service = GuardDriveService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let profile = guardrive_service.get_unified_profile(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(profile))
+}
+
+// EcoToken (ECT) endpoints
+async fn get_ecotoken_info() -> Result<Json<EcoToken>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let info = ecotoken_service.get_ecotoken_info().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(info))
+}
+
+async fn get_ecotoken_balance(Path(address): Path<String>) -> Result<Json<EcoTokenBalance>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let balance = ecotoken_service.get_ecotoken_balance(&address).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(balance))
+}
+
+async fn transfer_ecotoken(Json(payload): Json<HashMap<String, String>>) -> Result<Json<EcoTokenTransaction>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let from = payload.get("from").unwrap_or(&"0x0".to_string()).clone();
+    let to = payload.get("to").unwrap_or(&"0x0".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    
+    let transaction = ecotoken_service.transfer(&from, &to, amount).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(transaction))
+}
+
+async fn start_ecotoken_staking(Json(payload): Json<HashMap<String, String>>) -> Result<Json<EcoTokenStaking>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user = payload.get("user").unwrap_or(&"".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    let duration = payload.get("duration").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    
+    let staking = ecotoken_service.start_staking(&user, amount, duration).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(staking))
+}
+
+async fn end_ecotoken_staking(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user = payload.get("user").unwrap_or(&"".to_string()).clone();
+    
+    let rewards = ecotoken_service.end_staking(&user).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("rewards".to_string(), rewards);
+    Ok(Json(response))
+}
+
+async fn get_ecotoken_rewards(Path(user_id): Path<String>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let rewards = ecotoken_service.calculate_rewards(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("rewards".to_string(), rewards);
+    Ok(Json(response))
+}
+
+// EcoScore (ECS) endpoints
+async fn get_ecoscore_profile(Path(user_id): Path<String>) -> Result<Json<EcoScore>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let profile = ecotoken_service.get_ecoscore(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(profile))
+}
+
+async fn mint_ecoscore(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    let reason = payload.get("reason").unwrap_or(&"ESG Reward".to_string()).clone();
+    
+    let minted = ecotoken_service.mint_ecoscore(&user_id, amount, &reason).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("minted".to_string(), minted);
+    Ok(Json(response))
+}
+
+async fn get_ecoscore_benefits(Path(user_id): Path<String>) -> Result<Json<Vec<EcoScoreBenefit>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let benefits = ecotoken_service.get_available_benefits(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(benefits))
+}
+
+async fn get_ecoscore_levels() -> Result<Json<Vec<EcoScoreLevel>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let levels = ecotoken_service.get_ecoscore_levels().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(levels))
+}
+
+async fn add_ecoscore_achievement(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let achievement = payload.get("achievement").unwrap_or(&"".to_string()).clone();
+    
+    ecotoken_service.add_achievement(&user_id, &achievement).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("status".to_string(), "success".to_string());
+    Ok(Json(response))
+}
+
+// CarbonCredit (CCR) endpoints
+async fn get_carbon_credits(Path(user_id): Path<String>) -> Result<Json<CarbonCredit>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let credits = ecotoken_service.get_carbon_credits(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(credits))
+}
+
+async fn mint_carbon_credits(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    let verification_id = payload.get("verification_id").unwrap_or(&"".to_string()).clone();
+    
+    let minted = ecotoken_service.mint_carbon_credits(&user_id, amount, &verification_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("minted".to_string(), minted);
+    Ok(Json(response))
+}
+
+async fn retire_carbon_credits(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    let purpose = payload.get("purpose").unwrap_or(&"Carbon offset".to_string()).clone();
+    
+    let retirement_id = ecotoken_service.retire_credits(&user_id, amount, &purpose).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("retirement_id".to_string(), retirement_id);
+    Ok(Json(response))
+}
+
+async fn add_carbon_verification(Json(payload): Json<HashMap<String, String>>) -> Result<Json<CarbonVerification>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let verification_id = payload.get("verification_id").unwrap_or(&"".to_string()).clone();
+    let co2_reduced = payload.get("co2_reduced").unwrap_or(&"0.0".to_string()).parse::<f64>().unwrap_or(0.0);
+    let methodology = payload.get("methodology").unwrap_or(&"GHG Protocol".to_string()).clone();
+    
+    let verification = ecotoken_service.add_verification(&verification_id, co2_reduced, &methodology).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(verification))
+}
+
+async fn get_carbon_marketplace() -> Result<Json<Vec<CarbonMarketplaceListing>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let listings = ecotoken_service.get_carbon_marketplace().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(listings))
+}
+
+async fn buy_carbon_credits(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let buyer = payload.get("buyer").unwrap_or(&"".to_string()).clone();
+    let listing_id = payload.get("listing_id").unwrap_or(&"".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    
+    let purchase = ecotoken_service.buy_carbon_credits(&buyer, &listing_id, amount).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("purchase_id".to_string(), purchase.purchase_id);
+    Ok(Json(response))
+}
+
+// EcoCertificate (ECR) endpoints
+async fn mint_certificate(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let certificate_type = payload.get("certificate_type").unwrap_or(&"Carbon Neutral".to_string()).clone();
+    let impact_score = payload.get("impact_score").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    let rarity = payload.get("rarity").unwrap_or(&"1".to_string()).parse::<u32>().unwrap_or(1);
+    let metadata = payload.get("metadata").unwrap_or(&"".to_string()).clone();
+    
+    let token_id = ecotoken_service.mint_certificate(&user_id, &certificate_type, impact_score, rarity, &metadata).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("token_id".to_string(), token_id);
+    Ok(Json(response))
+}
+
+async fn get_user_certificates(Path(user_id): Path<String>) -> Result<Json<Vec<EcoCertificate>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let certificates = ecotoken_service.get_user_certificates(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(certificates))
+}
+
+async fn get_certificate_data(Path(token_id): Path<String>) -> Result<Json<EcoCertificate>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let certificate = ecotoken_service.get_certificate_data(&token_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(certificate))
+}
+
+async fn verify_certificate(Path(token_id): Path<String>) -> Result<Json<HashMap<String, bool>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let verified = ecotoken_service.verify_certificate(&token_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("verified".to_string(), verified);
+    Ok(Json(response))
+}
+
+async fn list_certificate(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let token_id = payload.get("token_id").unwrap_or(&"".to_string()).clone();
+    let price = payload.get("price").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    
+    let listing = ecotoken_service.list_certificate(&user_id, &token_id, price).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("listing_id".to_string(), listing.listing_id);
+    Ok(Json(response))
+}
+
+async fn buy_certificate(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let buyer = payload.get("buyer").unwrap_or(&"".to_string()).clone();
+    let listing_id = payload.get("listing_id").unwrap_or(&"".to_string()).clone();
+    
+    let purchase = ecotoken_service.buy_certificate(&buyer, &listing_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("purchase_id".to_string(), purchase.purchase_id);
+    Ok(Json(response))
+}
+
+async fn get_certificate_types() -> Result<Json<Vec<CertificateType>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let types = ecotoken_service.get_available_types().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(types))
+}
+
+// EcoStake (EST) endpoints
+async fn get_ecostake_position(Path(user_id): Path<String>) -> Result<Json<EcoStake>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let position = ecotoken_service.get_ecostake(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(position))
+}
+
+async fn stake_ecostake(Json(payload): Json<HashMap<String, String>>) -> Result<Json<EcoStakeTier>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    let tier = payload.get("tier").unwrap_or(&"Gold".to_string()).clone();
+    
+    let staking_tier = ecotoken_service.stake_tokens(&user_id, amount, &tier).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(staking_tier))
+}
+
+async fn unstake_ecostake(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    
+    let rewards = ecotoken_service.unstake_tokens(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("rewards".to_string(), rewards);
+    Ok(Json(response))
+}
+
+async fn claim_ecostake_rewards(Path(user_id): Path<String>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let rewards = ecotoken_service.claim_rewards(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("rewards".to_string(), rewards);
+    Ok(Json(response))
+}
+
+async fn get_ecostake_tiers() -> Result<Json<Vec<EcoStakeTier>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let tiers = ecotoken_service.get_ecostake_tiers().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(tiers))
+}
+
+async fn get_governance_proposals() -> Result<Json<Vec<GovernanceProposal>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let proposals = ecotoken_service.get_governance_proposals().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(proposals))
+}
+
+
+async fn vote_on_governance(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let voter = payload.get("voter").unwrap_or(&"".to_string()).clone();
+    let proposal_id = payload.get("proposal_id").unwrap_or(&"".to_string()).clone();
+    let support = payload.get("support").unwrap_or(&"false".to_string()).parse::<bool>().unwrap_or(false);
+    
+    let _vote = ecotoken_service.vote_on_proposal(&voter, &proposal_id, support).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("status".to_string(), "success".to_string());
+    Ok(Json(response))
+}
+
+// EcoGem (EGM) endpoints
+async fn get_ecogem_balance(Path(user_id): Path<String>) -> Result<Json<EcoGem>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let balance = ecotoken_service.get_ecogem(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(balance))
+}
+
+async fn mint_ecogem(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    let reason = payload.get("reason").unwrap_or(&"Premium reward".to_string()).clone();
+    
+    let minted = ecotoken_service.mint_premium_tokens(&user_id, amount, &reason).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("minted".to_string(), minted);
+    Ok(Json(response))
+}
+
+async fn get_vip_status(Path(user_id): Path<String>) -> Result<Json<VIPStatus>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let status = ecotoken_service.get_vip_status(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(status))
+}
+
+async fn get_ecogem_benefits(Path(user_id): Path<String>) -> Result<Json<Vec<PremiumFeature>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let benefits = ecotoken_service.get_ecogem_benefits(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(benefits))
+}
+
+async fn get_vip_levels() -> Result<Json<Vec<VIPLevel>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let levels = ecotoken_service.get_vip_levels().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(levels))
+}
+
+async fn access_premium_feature(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let user_id = payload.get("user_id").unwrap_or(&"".to_string()).clone();
+    let feature = payload.get("feature").unwrap_or(&"".to_string()).clone();
+    
+    ecotoken_service.access_premium_feature(&user_id, &feature).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("status".to_string(), "success".to_string());
+    Ok(Json(response))
+}
+
+// EcoToken Ecosystem endpoints
+async fn get_unified_ecosystem_balance(Path(user_id): Path<String>) -> Result<Json<HashMap<String, u64>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let balance = ecotoken_service.get_unified_balance(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(balance))
+}
+
+async fn transfer_cross_ecosystem(Json(payload): Json<HashMap<String, String>>) -> Result<Json<HashMap<String, String>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let from_user = payload.get("from_user").unwrap_or(&"".to_string()).clone();
+    let to_user = payload.get("to_user").unwrap_or(&"".to_string()).clone();
+    let token_type = payload.get("token_type").unwrap_or(&"ECT".to_string()).clone();
+    let amount = payload.get("amount").unwrap_or(&"0".to_string()).parse::<u64>().unwrap_or(0);
+    
+    let transaction_id = ecotoken_service.transfer_cross_token(&from_user, &to_user, &token_type, amount).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let mut response = HashMap::new();
+    response.insert("transaction_id".to_string(), transaction_id);
+    Ok(Json(response))
+}
+
+async fn get_ecosystem_stats() -> Result<Json<HashMap<String, u64>>, StatusCode> {
+    let ecotoken_service = EcoTokenService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let stats = ecotoken_service.get_ecosystem_stats().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(stats))
+}
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -443,7 +796,62 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             // Cross-Platform Integration
             .route("/api/v1/gst/cross-platform/balance/:user_id", get(get_cross_platform_balance))
             .route("/api/v1/gst/cross-platform/transfer", post(transfer_cross_platform_tokens))
-            .route("/api/v1/gst/cross-platform/profile/:user_id", get(get_unified_esg_profile));
+            .route("/api/v1/gst/cross-platform/profile/:user_id", get(get_unified_esg_profile))
+            
+            // EcoToken (ECT) endpoints
+            .route("/api/v1/ecotoken/info", get(get_ecotoken_info))
+            .route("/api/v1/ecotoken/balance/:address", get(get_ecotoken_balance))
+            .route("/api/v1/ecotoken/transfer", post(transfer_ecotoken))
+            .route("/api/v1/ecotoken/stake", post(start_ecotoken_staking))
+            .route("/api/v1/ecotoken/unstake", post(end_ecotoken_staking))
+            .route("/api/v1/ecotoken/rewards/:user_id", get(get_ecotoken_rewards))
+            
+            // EcoScore (ECS) endpoints
+            .route("/api/v1/ecoscore/profile/:user_id", get(get_ecoscore_profile))
+            .route("/api/v1/ecoscore/mint", post(mint_ecoscore))
+            .route("/api/v1/ecoscore/benefits/:user_id", get(get_ecoscore_benefits))
+            .route("/api/v1/ecoscore/levels", get(get_ecoscore_levels))
+            .route("/api/v1/ecoscore/achievement", post(add_ecoscore_achievement))
+            
+            // CarbonCredit (CCR) endpoints
+            .route("/api/v1/carboncredits/balance/:user_id", get(get_carbon_credits))
+            .route("/api/v1/carboncredits/mint", post(mint_carbon_credits))
+            .route("/api/v1/carboncredits/retire", post(retire_carbon_credits))
+            .route("/api/v1/carboncredits/verify", post(add_carbon_verification))
+            .route("/api/v1/carboncredits/marketplace", get(get_carbon_marketplace))
+            .route("/api/v1/carboncredits/buy", post(buy_carbon_credits))
+            
+            // EcoCertificate (ECR) endpoints
+            .route("/api/v1/certificates/mint", post(mint_certificate))
+            .route("/api/v1/certificates/user/:user_id", get(get_user_certificates))
+            .route("/api/v1/certificates/:token_id", get(get_certificate_data))
+            .route("/api/v1/certificates/verify/:token_id", post(verify_certificate))
+            .route("/api/v1/certificates/list", post(list_certificate))
+            .route("/api/v1/certificates/buy", post(buy_certificate))
+            .route("/api/v1/certificates/types", get(get_certificate_types))
+            
+            // EcoStake (EST) endpoints
+            .route("/api/v1/ecostake/position/:user_id", get(get_ecostake_position))
+            .route("/api/v1/ecostake/stake", post(stake_ecostake))
+            .route("/api/v1/ecostake/unstake", post(unstake_ecostake))
+            .route("/api/v1/ecostake/claim/:user_id", post(claim_ecostake_rewards))
+            .route("/api/v1/ecostake/tiers", get(get_ecostake_tiers))
+            .route("/api/v1/ecostake/proposals", get(get_governance_proposals))
+            .route("/api/v1/ecostake/propose", post(create_governance_proposal))
+            .route("/api/v1/ecostake/vote", post(vote_on_governance))
+            
+            // EcoGem (EGM) endpoints
+            .route("/api/v1/ecogem/balance/:user_id", get(get_ecogem_balance))
+            .route("/api/v1/ecogem/mint", post(mint_ecogem))
+            .route("/api/v1/ecogem/vip/:user_id", get(get_vip_status))
+            .route("/api/v1/ecogem/benefits/:user_id", get(get_ecogem_benefits))
+            .route("/api/v1/ecogem/levels", get(get_vip_levels))
+            .route("/api/v1/ecogem/access", post(access_premium_feature))
+            
+            // EcoToken Ecosystem endpoints
+            .route("/api/v1/ecosystem/balance/:user_id", get(get_unified_ecosystem_balance))
+            .route("/api/v1/ecosystem/transfer", post(transfer_cross_ecosystem))
+            .route("/api/v1/ecosystem/stats", get(get_ecosystem_stats));
 
     // Start the server
     let listener = TcpListener::bind("127.0.0.1:3000").await?;
