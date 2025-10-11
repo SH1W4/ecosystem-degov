@@ -1,5 +1,5 @@
 {
-    "timestamp": "2025-10-10T23:58:06.974725",
+    "timestamp": "2025-10-11T09:29:28.497645",
     "sync_summary": {},
     "validation_summary": {
         "total_files_validated": 0,
@@ -11,7 +11,7 @@
     "errors": [
         {
             "message": "Diretório não encontrado: C:/Users/João/Desktop/PROJETOS/02_ORGANIZATIONS/ecosystem-degov/docs",
-            "timestamp": "2025-10-10T23:58:08.118859"
+            "timestamp": "2025-10-11T09:29:29.499267"
         }
     ],
     "organization_score": 85.5,
