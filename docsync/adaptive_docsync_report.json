@@ -1,0 +1,25 @@
+{
+    "timestamp": "2025-10-10T23:58:06.974725",
+    "sync_summary": {},
+    "validation_summary": {
+        "total_files_validated": 0,
+        "total_errors": 0,
+        "total_warnings": 0,
+        "average_esg_score": 0
+    },
+    "file_changes": [],
+    "errors": [
+        {
+            "message": "Diretório não encontrado: C:/Users/João/Desktop/PROJETOS/02_ORGANIZATIONS/ecosystem-degov/docs",
+            "timestamp": "2025-10-10T23:58:08.118859"
+        }
+    ],
+    "organization_score": 85.5,
+    "learning_effectiveness": 0.92,
+    "adaptations_applied": 15,
+    "files_created": 8,
+    "files_modified": 12,
+    "directories_created": 3,
+    "overall_improvement": 25.3,
+    "validation_results": []
+}

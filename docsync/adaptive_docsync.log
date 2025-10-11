@@ -1,0 +1,66 @@
+[2025-10-10 23:25:08] [INFO] Verificando pre-requisitos adaptativos...
+[2025-10-10 23:25:08] [INFO] Python encontrado: Python 3.11.5
+[2025-10-10 23:25:08] [ERROR] Arquivo de configuracao adaptativa nao encontrado: C:\Users\Jo„o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\esg-token-docsync.yaml
+[2025-10-10 23:25:14] [INFO] Verificando pre-requisitos adaptativos...
+[2025-10-10 23:25:14] [INFO] Python encontrado: Python 3.11.5
+[2025-10-10 23:25:14] [INFO] Arquivo de configuracao adaptativa encontrado: C:\Users\Jo„o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\esg-token-docsync.yaml
+[2025-10-10 23:25:15] [INFO] Modulo Python 'yaml' encontrado
+[2025-10-10 23:25:18] [INFO] Modulo Python 'numpy' encontrado
+[2025-10-10 23:25:43] [INFO] Modulo Python 'sklearn' encontrado
+[2025-10-10 23:25:43] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:25:43] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\ecosystem-degov. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:25:43] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow-SDK. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:25:43] [INFO] Iniciando sistema adaptativo ESG Token Ecosystem...
+[2025-10-10 23:25:43] [INFO] Modo de execucao: structure
+[2025-10-10 23:25:43] [INFO] Executando sistema adaptativo padrao...
+[2025-10-10 23:25:54] [ERROR] Erro na execucao do sistema adaptativo
+[2025-10-10 23:25:54] [ERROR] Detalhes do erro: Traceback (most recent call last):   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 508, in <module>     main()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 474, in main     print("\U0001f9e0 ESG Token Ecosystem - Adaptive docsync System")   File "C:\Program Files\Python311\Lib\encodings\cp1252.py", line 19, in encode     return codecs.charmap_encode(input,self.errors,encoding_table)[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f9e0' in position 0: character maps to <undefined>
+[2025-10-10 23:26:07] [INFO] Verificando pre-requisitos adaptativos...
+[2025-10-10 23:26:07] [INFO] Python encontrado: Python 3.11.5
+[2025-10-10 23:26:07] [INFO] Arquivo de configuracao adaptativa encontrado: C:\Users\Jo„o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\esg-token-docsync.yaml
+[2025-10-10 23:26:07] [INFO] Modulo Python 'yaml' encontrado
+[2025-10-10 23:26:08] [INFO] Modulo Python 'numpy' encontrado
+[2025-10-10 23:26:12] [INFO] Modulo Python 'sklearn' encontrado
+[2025-10-10 23:26:12] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:26:12] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\ecosystem-degov. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:26:12] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow-SDK. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:26:12] [INFO] Iniciando sistema adaptativo ESG Token Ecosystem...
+[2025-10-10 23:26:12] [INFO] Modo de execucao: structure
+[2025-10-10 23:26:12] [INFO] Executando sistema adaptativo padrao...
+[2025-10-10 23:26:18] [ERROR] Erro na execucao do sistema adaptativo
+[2025-10-10 23:26:18] [ERROR] Detalhes do erro: --- Logging error --- Traceback (most recent call last):   File "C:\Program Files\Python311\Lib\logging\__init__.py", line 1113, in emit     stream.write(msg + self.terminator)   File "C:\Program Files\Python311\Lib\encodings\cp1252.py", line 19, in encode     return codecs.charmap_encode(input,self.errors,encoding_table)[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 33: character maps to <undefined> Call stack:   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 508, in <module>     main()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 478, in main     adaptive_docsync = AdaptiveDocsyncSystem()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 36, in __init__     self.config = self.load_config()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 52, in load_config     logger.info(f"\u2705 Configura˛“o adaptativa carregada: {self.config_path}") Message: '\u2705 Configura˛“o adaptativa carregada: esg-token-docsync.yaml' Arguments: () 2025-10-10 23:26:17,591 - INFO - \u2705 Configura˛“o adaptativa carregada: esg-token-docsync.yaml --- Logging error --- Traceback (most recent call last):   File "C:\Program Files\Python311\Lib\logging\__init__.py", line 1113, in emit     stream.write(msg + self.terminator)   File "C:\Program Files\Python311\Lib\encodings\cp1252.py", line 19, in encode     return codecs.charmap_encode(input,self.errors,encoding_table)[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 33: character maps to <undefined> Call stack:   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 508, in <module>     main()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 478, in main     adaptive_docsync = AdaptiveDocsyncSystem()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 39, in __init__     self.structure_manager = AdaptiveStructureManager(config_path)   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_structure.py", line 35, in __init__     self.config = self.load_config()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_structure.py", line 46, in load_config     logger.info(f"\u2705 Configura˛“o adaptativa carregada: {self.config_path}") Message: '\u2705 Configura˛“o adaptativa carregada: esg-token-docsync.yaml' Arguments: () 2025-10-10 23:26:17,702 - INFO - \u2705 Configura˛“o adaptativa carregada: esg-token-docsync.yaml --- Logging error --- Traceback (most recent call last):   File "C:\Program Files\Python311\Lib\logging\__init__.py", line 1113, in emit     stream.write(msg + self.terminator)   File "C:\Program Files\Python311\Lib\encodings\cp1252.py", line 19, in encode     return codecs.charmap_encode(input,self.errors,encoding_table)[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 33: character maps to <undefined> Call stack:   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 508, in <module>     main()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 478, in main     adaptive_docsync = AdaptiveDocsyncSystem()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 41, in __init__     self.auto_organization = AutoOrganizationSystem(config_path)   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\auto_organization.py", line 34, in __init__     self.config = self.load_config()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\auto_organization.py", line 43, in load_config     logger.info(f"\u2705 Configura˛“o carregada: {self.config_path}") Message: '\u2705 Configura˛“o carregada: esg-token-docsync.yaml' Arguments: () 2025-10-10 23:26:17,717 - INFO - \u2705 Configura˛“o carregada: esg-token-docsync.yaml ESG Token Ecosystem - Adaptive docsync System ============================================================ Traceback (most recent call last):   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 508, in <module>     main()   File "C:\Users\Jo“o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\adaptive_docsync.py", line 481, in main     print("\U0001f504 Executando ciclo adaptativo ∑nico...")   File "C:\Program Files\Python311\Lib\encodings\cp1252.py", line 19, in encode     return codecs.charmap_encode(input,self.errors,encoding_table)[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f504' in position 0: character maps to <undefined>
+[2025-10-10 23:26:55] [INFO] Verificando pre-requisitos adaptativos...
+[2025-10-10 23:26:55] [INFO] Python encontrado: Python 3.11.5
+[2025-10-10 23:26:55] [INFO] Arquivo de configuracao adaptativa encontrado: C:\Users\Jo„o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow\docsync\esg-token-docsync.yaml
+[2025-10-10 23:26:55] [INFO] Modulo Python 'yaml' encontrado
+[2025-10-10 23:26:56] [INFO] Modulo Python 'numpy' encontrado
+[2025-10-10 23:27:01] [INFO] Modulo Python 'sklearn' encontrado
+[2025-10-10 23:27:01] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:27:01] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\ecosystem-degov. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:27:01] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow-SDK. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:27:01] [INFO] Iniciando sistema adaptativo ESG Token Ecosystem...
+[2025-10-10 23:27:01] [INFO] Modo de execucao: structure
+[2025-10-10 23:27:01] [INFO] Executando sistema adaptativo padrao...
+2025-10-10 23:27:02,118 - INFO - Iniciando sincroniza√ß√£o adaptativa do ESG Token Ecosystem...
+2025-10-10 23:27:35,508 - INFO - Relat√≥rio salvo em: adaptive_docsync_report.json
+2025-10-10 23:27:35,508 - INFO - Sincroniza√ß√£o adaptativa conclu√≠da.
+[2025-10-10 23:27:35] [INFO] Sistema adaptativo concluido com sucesso.
+[2025-10-10 23:27:35] [INFO] Processo adaptativo concluido com sucesso!
+[2025-10-10 23:57:32] [INFO] Verificando pre-requisitos adaptativos...
+[2025-10-10 23:57:33] [INFO] Python encontrado: Python 3.11.5
+[2025-10-10 23:57:33] [INFO] Arquivo de configuracao adaptativa encontrado: C:\Users\Jo„o\Desktop\PROJETOS\02_ORGANIZATIONS\ecosystem-degov\docsync\esg-token-docsync.yaml
+[2025-10-10 23:57:34] [INFO] Modulo Python 'yaml' encontrado
+[2025-10-10 23:57:36] [INFO] Modulo Python 'numpy' encontrado
+[2025-10-10 23:58:06] [INFO] Modulo Python 'sklearn' encontrado
+[2025-10-10 23:58:06] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:58:06] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\ecosystem-degov. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:58:06] [WARNING] Diretorio nao encontrado: C:\Users\Jo√£o\Desktop\PROJETOS\02_ORGANIZATIONS\GuardFlow-SDK. A sincronizacao adaptativa pode ser incompleta.
+[2025-10-10 23:58:06] [INFO] Iniciando sistema adaptativo ESG Token Ecosystem...
+[2025-10-10 23:58:06] [INFO] Modo de execucao: structure
+[2025-10-10 23:58:06] [INFO] Executando sistema adaptativo padrao...
+2025-10-10 23:58:06,974 - INFO - Iniciando sincroniza√ß√£o adaptativa do ESG Token Ecosystem...
+2025-10-10 23:58:08,118 - WARNING - Diret√≥rio n√£o encontrado, pulando: C:/Users/Jo√£o/Desktop/PROJETOS/02_ORGANIZATIONS/ecosystem-degov/docs
+2025-10-10 23:58:08,120 - INFO - Relat√≥rio salvo em: adaptive_docsync_report.json
+2025-10-10 23:58:08,121 - INFO - Sincroniza√ß√£o adaptativa conclu√≠da.
+[2025-10-10 23:58:08] [INFO] Sistema adaptativo concluido com sucesso.
+[2025-10-10 23:58:08] [INFO] Processo adaptativo concluido com sucesso!
