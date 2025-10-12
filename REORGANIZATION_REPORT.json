@@ -1,0 +1,53 @@
+{
+  "timestamp": "2025-10-12T12:19:15.096021",
+  "summary": {
+    "directories_created": 0,
+    "files_moved": 18,
+    "actions_logged": 22
+  },
+  "directories_created": [],
+  "files_moved": [
+    "ECOSYSTEM_DESCRIPTION.md -> docs/architecture/",
+    "EXECUTIVE_SUMMARY.md -> docs/investor/",
+    "FINAL_IMPLEMENTATION_SUMMARY.md -> docs/developer/",
+    "PROJECT_STATUS_12_10_2025.md -> docs/developer/",
+    "ROADMAP_EXECUCAO.md -> docs/developer/",
+    "TASK_LIST_DETALHADA.md -> docs/developer/",
+    "TASKMAS_SUPERESCOPO.md -> docs/developer/",
+    "TOKEN_SUPPLY_ANALYSIS.md -> docs/developer/",
+    "SESSION.md -> docs/developer/",
+    "NEXT_SESSION_GUIDE.md -> docs/developer/",
+    "DIRECTORY_STRUCTURE_ANALYSIS.md -> docs/architecture/",
+    "hardhat.config.js -> config/",
+    "package.json -> config/",
+    "package-lock.json -> config/",
+    "Cargo.toml -> config/",
+    "Cargo.lock -> config/",
+    ".gitignore -> config/",
+    "env.example -> config/"
+  ],
+  "actions_log": [
+    "[2025-10-12 12:19:14] FILE_MOVED: ECOSYSTEM_DESCRIPTION.md -> docs/architecture/",
+    "[2025-10-12 12:19:14] FILE_MOVED: EXECUTIVE_SUMMARY.md -> docs/investor/",
+    "[2025-10-12 12:19:14] FILE_MOVED: FINAL_IMPLEMENTATION_SUMMARY.md -> docs/developer/",
+    "[2025-10-12 12:19:14] FILE_MOVED: PROJECT_STATUS_12_10_2025.md -> docs/developer/",
+    "[2025-10-12 12:19:14] FILE_MOVED: ROADMAP_EXECUCAO.md -> docs/developer/",
+    "[2025-10-12 12:19:15] FILE_MOVED: TASK_LIST_DETALHADA.md -> docs/developer/",
+    "[2025-10-12 12:19:15] FILE_MOVED: TASKMAS_SUPERESCOPO.md -> docs/developer/",
+    "[2025-10-12 12:19:15] FILE_MOVED: TOKEN_SUPPLY_ANALYSIS.md -> docs/developer/",
+    "[2025-10-12 12:19:15] FILE_MOVED: SESSION.md -> docs/developer/",
+    "[2025-10-12 12:19:15] FILE_MOVED: NEXT_SESSION_GUIDE.md -> docs/developer/",
+    "[2025-10-12 12:19:15] FILE_MOVED: DIRECTORY_STRUCTURE_ANALYSIS.md -> docs/architecture/",
+    "[2025-10-12 12:19:15] FILE_MOVED: hardhat.config.js -> config/",
+    "[2025-10-12 12:19:15] FILE_MOVED: package.json -> config/",
+    "[2025-10-12 12:19:15] FILE_MOVED: package-lock.json -> config/",
+    "[2025-10-12 12:19:15] FILE_MOVED: Cargo.toml -> config/",
+    "[2025-10-12 12:19:15] FILE_MOVED: Cargo.lock -> config/",
+    "[2025-10-12 12:19:15] FILE_MOVED: .gitignore -> config/",
+    "[2025-10-12 12:19:15] FILE_MOVED: env.example -> config/",
+    "[2025-10-12 12:19:15] FILE_CREATED: .github/workflows/ci.yml",
+    "[2025-10-12 12:19:15] FILE_CREATED: .vscode/settings.json",
+    "[2025-10-12 12:19:15] FILE_CREATED: docker/Dockerfile.backend",
+    "[2025-10-12 12:19:15] FILE_CREATED: docker/docker-compose.yml"
+  ]
+}

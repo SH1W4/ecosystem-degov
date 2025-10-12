@@ -1,310 +1,419 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "../interfaces/IESToken.sol";
 
 /**
  * @title CCRToken - Carbon Credit Token
  * @dev ERC20 token para créditos de carbono verificados
  * @author ESG Token Ecosystem
+ * 
+ * Features:
+ * - Créditos de carbono verificados
+ * - Sistema de aposentadoria (retirement)
+ * - Marketplace de créditos
+ * - Verificação de integridade
+ * - Integração com protocolos de carbono
  */
-contract CCRToken is ERC20, ERC20Burnable, Ownable, ReentrancyGuard {
+contract CCRToken is ERC20, ERC20Burnable, Ownable, ReentrancyGuard, IESToken {
     
     // Token Configuration
-    uint256 public constant MAX_SUPPLY = 100_000_000 * 10**18; // 100 million CCR (representing 100M tons CO2)
-    uint256 public constant INITIAL_SUPPLY = 10_000_000 * 10**18; // 10 million CCR initial
+    uint256 public constant MAX_SUPPLY = 1_000_000 * 10**18; // 1 million CCR (1 CCR = 1 ton CO2)
+    uint256 public constant INITIAL_SUPPLY = 100_000 * 10**18; // 100,000 CCR initial
     
-    // Carbon Credit Configuration
-    uint256 public constant TONS_PER_TOKEN = 1; // 1 CCR = 1 ton CO2 equivalent
-    uint256 public constant VERIFICATION_PERIOD = 365 days; // 1 year verification period
-    
-    // Carbon Credit Registry
+    // Carbon Credit System
     struct CarbonCredit {
-        uint256 creditId;
-        string projectName;
-        string projectType; // e.g., "Renewable Energy", "Forest Conservation", "Carbon Capture"
-        string location;
-        uint256 co2Equivalent; // CO2 equivalent in tons
-        uint256 verificationDate;
-        uint256 expiryDate;
-        string verificationStandard; // e.g., "VCS", "Gold Standard", "CDM"
-        bool isRetired;
+        uint256 id;
+        string projectId;
+        string standard; // VCS, Gold Standard, etc.
+        uint256 vintage; // Year of generation
+        string country;
+        string projectType;
+        uint256 co2Reduction; // Tons of CO2 reduced
+        bool verified;
+        bool retired;
         address issuer;
-        string metadataURI; // IPFS URI for additional project data
+        uint256 issueDate;
+        uint256 retirementDate;
     }
     
     mapping(uint256 => CarbonCredit) public carbonCredits;
     mapping(address => uint256[]) public userCredits;
-    mapping(string => bool) public verifiedStandards;
+    mapping(string => bool) public verifiedProjects;
+    uint256 public creditCount;
     
-    uint256 public nextCreditId = 1;
-    uint256 public totalCreditsIssued = 0;
-    uint256 public totalCreditsRetired = 0;
+    // Retirement System
+    struct Retirement {
+        uint256 creditId;
+        address retirer;
+        string purpose;
+        uint256 amount;
+        uint256 timestamp;
+        string certificate;
+    }
     
-    // ESG Integration
-    address public gstToken; // Reference to GST Token
-    address public carbonOracle; // Carbon data oracle
+    mapping(uint256 => Retirement) public retirements;
+    mapping(address => uint256[]) public userRetirements;
+    uint256 public retirementCount;
+    
+    // Marketplace System
+    struct Listing {
+        uint256 id;
+        uint256 creditId;
+        address seller;
+        uint256 price; // Price per ton in wei
+        uint256 amount;
+        bool active;
+        uint256 listingDate;
+    }
+    
+    mapping(uint256 => Listing) public listings;
+    mapping(address => uint256[]) public userListings;
+    uint256 public listingCount;
+    
+    // Verification System
+    mapping(address => bool) public verifiers;
+    mapping(string => bool) public approvedStandards;
     
     // Events
-    event CCRMinted(address indexed to, uint256 amount, string reason);
-    event CCRBurned(address indexed from, uint256 amount, string reason);
-    event CarbonCreditIssued(uint256 indexed creditId, address indexed issuer, string projectName, uint256 co2Equivalent);
-    event CarbonCreditRetired(uint256 indexed creditId, address indexed retirer, uint256 amount, string reason);
-    event GSTTokenSet(address indexed gstToken);
-    event CarbonOracleSet(address indexed carbonOracle);
-    event StandardVerified(string standard, bool verified);
+    event CarbonCreditIssued(uint256 indexed creditId, address indexed issuer, string projectId, uint256 amount);
+    event CarbonCreditRetired(uint256 indexed creditId, address indexed retirer, string purpose, uint256 amount);
+    event CreditListed(uint256 indexed listingId, uint256 indexed creditId, address indexed seller, uint256 price);
+    event CreditPurchased(uint256 indexed listingId, address indexed buyer, uint256 amount, uint256 totalPrice);
+    event VerifierAdded(address indexed verifier);
+    event StandardApproved(string standard);
+    event ProjectVerified(string indexed projectId, string standard);
+    event TokensMinted(address indexed to, uint256 amount, string reason);
+    event TokensBurned(address indexed from, uint256 amount, string reason);
     
-    constructor() ERC20("Carbon Credit Token", "CCR") Ownable() {
+    constructor() ERC20("Carbon Credit Token", "CCR") {
         _mint(msg.sender, INITIAL_SUPPLY);
         
-        // Initialize verified standards
-        verifiedStandards["VCS"] = true;
-        verifiedStandards["Gold Standard"] = true;
-        verifiedStandards["CDM"] = true;
-        verifiedStandards["CAR"] = true;
+        // Initialize approved standards
+        approvedStandards["VCS"] = true;
+        approvedStandards["Gold Standard"] = true;
+        approvedStandards["CDM"] = true;
+        approvedStandards["CAR"] = true;
     }
     
     // ============ CORE TOKEN FUNCTIONS ============
     
     /**
-     * @dev Mints new CCR tokens. Only callable by the owner.
-     * @param to The address to mint tokens to.
-     * @param amount The amount of tokens to mint.
-     * @param reason The reason for minting.
+     * @dev Mint new carbon credits (only owner/verifiers)
      */
-    function mint(address to, uint256 amount, string memory reason) public onlyOwner nonReentrant {
-        require(totalSupply() + amount <= MAX_SUPPLY, "Max supply exceeded");
+    function mint(address to, uint256 amount, string calldata reason) external override {
+        require(owner() == msg.sender || verifiers[msg.sender], "CCR: Unauthorized");
+        require(totalSupply() + amount <= MAX_SUPPLY, "CCR: Exceeds max supply");
         _mint(to, amount);
-        emit CCRMinted(to, amount, reason);
+        emit TokensMinted(to, amount, reason);
     }
     
     /**
-     * @dev Burns CCR tokens from a specified address.
-     * @param from The address to burn tokens from.
-     * @param amount The amount of tokens to burn.
-     * @param reason The reason for burning.
+     * @dev Burn carbon credits (retirement)
      */
-    function burn(address from, uint256 amount, string memory reason) external onlyOwner {
+    function burn(address from, uint256 amount, string calldata reason) external override {
+        require(owner() == msg.sender || verifiers[msg.sender], "CCR: Unauthorized");
         _burn(from, amount);
-        emit CCRBurned(from, amount, reason);
+        emit TokensBurned(from, amount, reason);
     }
     
-    // ============ CARBON CREDIT MANAGEMENT ============
+    // ============ CARBON CREDIT SYSTEM ============
     
     /**
-     * @dev Issues a new carbon credit.
-     * @param projectName The name of the carbon project.
-     * @param projectType The type of project (e.g., "Renewable Energy").
-     * @param location The location of the project.
-     * @param co2Equivalent The CO2 equivalent in tons.
-     * @param verificationStandard The verification standard used.
-     * @param metadataURI The IPFS URI for additional project data.
-     * @return creditId The ID of the issued credit.
+     * @dev Issue new carbon credit
      */
     function issueCarbonCredit(
-        string memory projectName,
-        string memory projectType,
-        string memory location,
-        uint256 co2Equivalent,
-        string memory verificationStandard,
-        string memory metadataURI
-    ) external onlyOwner nonReentrant returns (uint256) {
-        require(bytes(projectName).length > 0, "Project name cannot be empty");
-        require(co2Equivalent > 0, "CO2 equivalent must be positive");
-        require(verifiedStandards[verificationStandard], "Verification standard not recognized");
+        string calldata projectId,
+        string calldata standard,
+        uint256 vintage,
+        string calldata country,
+        string calldata projectType,
+        uint256 co2Reduction,
+        address recipient
+    ) external onlyOwner {
+        require(approvedStandards[standard], "CCR: Standard not approved");
+        require(co2Reduction > 0, "CCR: Invalid CO2 reduction amount");
         
-        uint256 creditId = nextCreditId++;
-        uint256 tokenAmount = co2Equivalent * 10**18; // Convert tons to token amount
-        
+        uint256 creditId = creditCount++;
         carbonCredits[creditId] = CarbonCredit({
-            creditId: creditId,
-            projectName: projectName,
+            id: creditId,
+            projectId: projectId,
+            standard: standard,
+            vintage: vintage,
+            country: country,
             projectType: projectType,
-            location: location,
-            co2Equivalent: co2Equivalent,
-            verificationDate: block.timestamp,
-            expiryDate: block.timestamp + VERIFICATION_PERIOD,
-            verificationStandard: verificationStandard,
-            isRetired: false,
+            co2Reduction: co2Reduction,
+            verified: true,
+            retired: false,
             issuer: msg.sender,
-            metadataURI: metadataURI
+            issueDate: block.timestamp,
+            retirementDate: 0
         });
         
-        // Mint tokens to the issuer
-        _mint(msg.sender, tokenAmount);
-        userCredits[msg.sender].push(creditId);
+        userCredits[recipient].push(creditId);
+        _mint(recipient, co2Reduction * 10**18);
         
-        totalCreditsIssued += co2Equivalent;
-        
-        emit CarbonCreditIssued(creditId, msg.sender, projectName, co2Equivalent);
-        emit CCRMinted(msg.sender, tokenAmount, "Carbon Credit Issuance");
-        
-        return creditId;
+        emit CarbonCreditIssued(creditId, msg.sender, projectId, co2Reduction);
     }
     
     /**
-     * @dev Retires carbon credits (burns tokens and marks credit as retired).
-     * @param creditId The ID of the credit to retire.
-     * @param amount The amount of tokens to retire.
-     * @param reason The reason for retirement.
+     * @dev Retire carbon credits
      */
     function retireCarbonCredit(
         uint256 creditId,
-        uint256 amount,
-        string memory reason
+        string calldata purpose,
+        string calldata certificate
     ) external nonReentrant {
-        require(creditId > 0 && creditId < nextCreditId, "Invalid credit ID");
-        require(amount > 0, "Amount must be positive");
-        require(balanceOf(msg.sender) >= amount, "Insufficient CCR balance");
-        
         CarbonCredit storage credit = carbonCredits[creditId];
-        require(!credit.isRetired, "Credit already retired");
-        require(block.timestamp <= credit.expiryDate, "Credit has expired");
+        require(credit.verified, "CCR: Credit not verified");
+        require(!credit.retired, "CCR: Credit already retired");
+        require(balanceOf(msg.sender) >= credit.co2Reduction * 10**18, "CCR: Insufficient balance");
+        
+        // Mark as retired
+        credit.retired = true;
+        credit.retirementDate = block.timestamp;
+        
+        // Create retirement record
+        uint256 retirementId = retirementCount++;
+        retirements[retirementId] = Retirement({
+            creditId: creditId,
+            retirer: msg.sender,
+            purpose: purpose,
+            amount: credit.co2Reduction,
+            timestamp: block.timestamp,
+            certificate: certificate
+        });
+        
+        userRetirements[msg.sender].push(retirementId);
         
         // Burn tokens
-        _burn(msg.sender, amount);
+        _burn(msg.sender, credit.co2Reduction * 10**18);
         
-        // Mark credit as retired if fully retired
-        uint256 remainingAmount = credit.co2Equivalent * 10**18 - amount;
-        if (remainingAmount <= 0) {
-            credit.isRetired = true;
-            totalCreditsRetired += credit.co2Equivalent;
-        }
-        
-        emit CarbonCreditRetired(creditId, msg.sender, amount, reason);
-        emit CCRBurned(msg.sender, amount, reason);
+        emit CarbonCreditRetired(creditId, msg.sender, purpose, credit.co2Reduction);
     }
     
     /**
-     * @dev Gets carbon credit information.
-     * @param creditId The ID of the credit.
-     * @return CarbonCredit The carbon credit information.
-     */
-    function getCarbonCredit(uint256 creditId) external view returns (CarbonCredit memory) {
-        require(creditId > 0 && creditId < nextCreditId, "Invalid credit ID");
-        return carbonCredits[creditId];
-    }
-    
-    /**
-     * @dev Gets user's carbon credits.
-     * @param user The address of the user.
-     * @return uint256[] Array of credit IDs owned by the user.
+     * @dev Get user's carbon credits
      */
     function getUserCredits(address user) external view returns (uint256[] memory) {
         return userCredits[user];
     }
     
-    // ============ ESG INTEGRATION ============
-    
     /**
-     * @dev Sets the GST Token address for cross-token rewards.
-     * @param _gstToken The address of the GST Token contract.
+     * @dev Get user's retirements
      */
-    function setGSTToken(address _gstToken) external onlyOwner {
-        require(_gstToken != address(0), "GST Token address cannot be zero");
-        gstToken = _gstToken;
-        emit GSTTokenSet(_gstToken);
+    function getUserRetirements(address user) external view returns (uint256[] memory) {
+        return userRetirements[user];
     }
     
-    /**
-     * @dev Sets the Carbon Oracle address for external carbon data.
-     * @param _carbonOracle The address of the Carbon Oracle contract.
-     */
-    function setCarbonOracle(address _carbonOracle) external onlyOwner {
-        require(_carbonOracle != address(0), "Carbon Oracle address cannot be zero");
-        carbonOracle = _carbonOracle;
-        emit CarbonOracleSet(_carbonOracle);
-    }
+    // ============ MARKETPLACE SYSTEM ============
     
     /**
-     * @dev Verifies a new carbon standard.
-     * @param standard The name of the standard.
-     * @param verified Whether the standard is verified.
+     * @dev List carbon credit for sale
      */
-    function verifyStandard(string memory standard, bool verified) external onlyOwner {
-        verifiedStandards[standard] = verified;
-        emit StandardVerified(standard, verified);
-    }
-    
-    // ============ CARBON MARKETPLACE ============
-    
-    /**
-     * @dev Transfers carbon credits between users.
-     * @param to The address to transfer to.
-     * @param amount The amount of CCR tokens to transfer.
-     * @return bool True if transfer was successful.
-     */
-    function transferCarbonCredits(address to, uint256 amount) external nonReentrant returns (bool) {
-        require(to != address(0), "Transfer to zero address");
-        require(balanceOf(msg.sender) >= amount, "Insufficient CCR balance");
+    function listCreditForSale(
+        uint256 creditId,
+        uint256 pricePerTon
+    ) external nonReentrant {
+        CarbonCredit storage credit = carbonCredits[creditId];
+        require(credit.verified, "CCR: Credit not verified");
+        require(!credit.retired, "CCR: Credit retired");
+        require(pricePerTon > 0, "CCR: Invalid price");
         
-        _transfer(msg.sender, to, amount);
-        return true;
+        uint256 listingId = listingCount++;
+        listings[listingId] = Listing({
+            id: listingId,
+            creditId: creditId,
+            seller: msg.sender,
+            price: pricePerTon,
+            amount: credit.co2Reduction,
+            active: true,
+            listingDate: block.timestamp
+        });
+        
+        userListings[msg.sender].push(listingId);
+        
+        emit CreditListed(listingId, creditId, msg.sender, pricePerTon);
     }
     
     /**
-     * @dev Calculates the CO2 equivalent for a given amount of tokens.
-     * @param tokenAmount The amount of tokens.
-     * @return uint256 The CO2 equivalent in tons.
+     * @dev Purchase carbon credit from marketplace
      */
-    function getCO2Equivalent(uint256 tokenAmount) external pure returns (uint256) {
-        return tokenAmount / 10**18; // 1 token = 1 ton CO2
+    function purchaseCredit(uint256 listingId) external payable nonReentrant {
+        Listing storage listing = listings[listingId];
+        require(listing.active, "CCR: Listing not active");
+        require(msg.value >= listing.price * listing.amount, "CCR: Insufficient payment");
+        
+        // Transfer credit to buyer
+        userCredits[msg.sender].push(listing.creditId);
+        userCredits[listing.seller].push(listing.creditId);
+        
+        // Transfer payment to seller
+        payable(listing.seller).transfer(msg.value);
+        
+        // Deactivate listing
+        listing.active = false;
+        
+        emit CreditPurchased(listingId, msg.sender, listing.amount, msg.value);
     }
     
     /**
-     * @dev Calculates the token amount for a given CO2 equivalent.
-     * @param co2Tons The CO2 equivalent in tons.
-     * @return uint256 The token amount.
+     * @dev Cancel listing
      */
-    function getTokenAmount(uint256 co2Tons) external pure returns (uint256) {
-        return co2Tons * 10**18; // 1 ton CO2 = 1 token
+    function cancelListing(uint256 listingId) external {
+        Listing storage listing = listings[listingId];
+        require(listing.seller == msg.sender, "CCR: Not your listing");
+        require(listing.active, "CCR: Listing not active");
+        
+        listing.active = false;
     }
     
-    // ============ ECOSYSTEM STATS ============
+    // ============ VERIFICATION SYSTEM ============
     
     /**
-     * @dev Gets overall Carbon Credit Ecosystem statistics.
-     * @return totalSupply_ Current total supply of CCR.
-     * @return maxSupply_ Maximum possible supply of CCR.
-     * @return totalCreditsIssued_ Total credits issued in tons CO2.
-     * @return totalCreditsRetired_ Total credits retired in tons CO2.
-     * @return activeCredits_ Active credits in tons CO2.
+     * @dev Add verifier
      */
-    function getCarbonEcosystemStats() public view returns (
-        uint256 totalSupply_,
-        uint256 maxSupply_,
-        uint256 totalCreditsIssued_,
-        uint256 totalCreditsRetired_,
-        uint256 activeCredits_
+    function addVerifier(address verifier) external onlyOwner {
+        verifiers[verifier] = true;
+        emit VerifierAdded(verifier);
+    }
+    
+    /**
+     * @dev Remove verifier
+     */
+    function removeVerifier(address verifier) external onlyOwner {
+        verifiers[verifier] = false;
+    }
+    
+    /**
+     * @dev Approve new standard
+     */
+    function approveStandard(string calldata standard) external onlyOwner {
+        approvedStandards[standard] = true;
+        emit StandardApproved(standard);
+    }
+    
+    /**
+     * @dev Verify project
+     */
+    function verifyProject(string calldata projectId, string calldata standard) external {
+        require(verifiers[msg.sender], "CCR: Not a verifier");
+        require(approvedStandards[standard], "CCR: Standard not approved");
+        
+        verifiedProjects[projectId] = true;
+        emit ProjectVerified(projectId, standard);
+    }
+    
+    // ============ SUSTAINABILITY SYSTEM ============
+    
+    /**
+     * @dev Update sustainability score (not applicable for CCR)
+     */
+    function updateSustainabilityScore(address user, uint256 score) external override {
+        // CCR doesn't use sustainability scores
+        revert("CCR: Not applicable for carbon credits");
+    }
+    
+    /**
+     * @dev Get sustainability score (not applicable for CCR)
+     */
+    function getSustainabilityScore(address user) external view override returns (uint256) {
+        // CCR doesn't use sustainability scores
+        return 0;
+    }
+    
+    /**
+     * @dev Calculate ESG bonus (based on retirement history)
+     */
+    function calculateESGBonus(address user) external view override returns (uint256) {
+        uint256[] memory userRetirementList = userRetirements[user];
+        uint256 totalRetired = 0;
+        
+        for (uint256 i = 0; i < userRetirementList.length; i++) {
+            totalRetired += retirements[userRetirementList[i]].amount;
+        }
+        
+        // Bonus based on total CO2 retired
+        if (totalRetired >= 1000) return 200; // 2x bonus for 1000+ tons
+        if (totalRetired >= 500) return 150;  // 1.5x bonus for 500+ tons
+        if (totalRetired >= 100) return 125; // 1.25x bonus for 100+ tons
+        if (totalRetired >= 10) return 110;  // 1.1x bonus for 10+ tons
+        return 100; // No bonus
+    }
+    
+    // ============ GOVERNANCE SYSTEM ============
+    
+    /**
+     * @dev Create proposal (simplified for CCR)
+     */
+    function createProposal(string calldata description, uint256 duration) external override returns (uint256) {
+        require(balanceOf(msg.sender) >= 1000 * 10**18, "CCR: Insufficient tokens to propose");
+        // Simplified governance for carbon credits
+        return 0;
+    }
+    
+    /**
+     * @dev Vote on proposal (simplified for CCR)
+     */
+    function voteOnProposal(uint256 proposalId, bool support) external override {
+        // Simplified governance for carbon credits
+    }
+    
+    /**
+     * @dev Get proposal votes (simplified for CCR)
+     */
+    function getProposalVotes(uint256 proposalId) external view override returns (uint256 forVotes, uint256 againstVotes) {
+        return (0, 0);
+    }
+    
+    // ============ VIEW FUNCTIONS ============
+    
+    /**
+     * @dev Get carbon credit details
+     */
+    function getCarbonCredit(uint256 creditId) external view returns (CarbonCredit memory) {
+        return carbonCredits[creditId];
+    }
+    
+    /**
+     * @dev Get marketplace statistics
+     */
+    function getMarketplaceStats() external view returns (
+        uint256 totalListings,
+        uint256 activeListings,
+        uint256 totalRetirements,
+        uint256 totalCreditsIssued
     ) {
-        totalSupply_ = totalSupply();
-        maxSupply_ = MAX_SUPPLY;
-        totalCreditsIssued_ = totalCreditsIssued;
-        totalCreditsRetired_ = totalCreditsRetired;
-        activeCredits_ = totalCreditsIssued_ - totalCreditsRetired_;
+        uint256 active = 0;
+        for (uint256 i = 0; i < listingCount; i++) {
+            if (listings[i].active) {
+                active++;
+            }
+        }
+        
+        return (listingCount, active, retirementCount, creditCount);
     }
     
-    // ============ CROSS-TOKEN INTEGRATION ============
-    
     /**
-     * @dev Converts CCR to GST tokens (if GST token is set).
-     * @param amount The amount of CCR to convert.
-     * @return bool True if conversion was successful.
+     * @dev Get user's carbon footprint
      */
-    function convertToGST(uint256 amount) external nonReentrant returns (bool) {
-        require(gstToken != address(0), "GST Token not set");
-        require(balanceOf(msg.sender) >= amount, "Insufficient CCR balance");
+    function getUserCarbonFootprint(address user) external view returns (
+        uint256 totalCredits,
+        uint256 totalRetired,
+        uint256 availableForRetirement
+    ) {
+        uint256[] memory credits = userCredits[user];
+        uint256[] memory userRetirementList = userRetirements[user];
         
-        // Burn CCR tokens
-        _burn(msg.sender, amount);
+        uint256 retired = 0;
+        for (uint256 i = 0; i < userRetirementList.length; i++) {
+            retired += retirements[userRetirementList[i]].amount;
+        }
         
-        // Note: In a real implementation, this would interact with the GST token contract
-        // to mint equivalent GST tokens. For now, we'll just emit an event.
-        emit CCRBurned(msg.sender, amount, "Converted to GST");
-        
-        return true;
+        return (credits.length, retired, balanceOf(user) / 10**18);
     }
 }
