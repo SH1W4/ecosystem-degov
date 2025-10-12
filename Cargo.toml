@@ -3,6 +3,14 @@ name = "trinity-ai-agent"
 version = "1.0.0"
 edition = "2021"
 
+[[bin]]
+name = "trinity_ai_agent"
+path = "src/main_trinity_ai_agent.rs"
+
+[[bin]]
+name = "esg_token_backend"
+path = "src/main.rs"
+
 [dependencies]
 # Web Framework
 axum = "0.7"
@@ -20,14 +28,12 @@ chrono = { version = "0.4", features = ["serde"] }
 
 # Error Handling
 anyhow = "1.0"
+thiserror = "1.0"
 
 # Logging
 env_logger = "0.10"
 
 # Trinity AI Agent Dependencies
-# Async runtime
-tokio = { version = "1.0", features = ["full"] }
-
 # HTTP client
 reqwest = { version = "0.11", features = ["json"] }
 
@@ -52,73 +58,11 @@ rand = "0.8"
 # Async utilities
 futures = "0.3"
 
-# Time utilities
-chrono = { version = "0.4", features = ["serde"] }
-
-# UUID generation
-uuid = { version = "1.0", features = ["v4", "serde"] }
-
-# Error handling
-thiserror = "1.0"
-anyhow = "1.0"
-
-# JSON handling
-serde_json = "1.0"
-
-# HTTP server
-axum = "0.7"
-tower = "0.4"
-tower-http = { version = "0.5", features = ["cors", "trace"] }
-
-# WebSocket
-tokio-tungstenite = "0.20"
-
 # Async file I/O
 tokio-util = "0.7"
 
 # Metrics and monitoring
 prometheus = "0.13"
-
-# Configuration management
-config = "0.14"
-toml = "0.8"
-
-# Environment variables
-dotenv = "0.15"
-
-# Async runtime utilities
-futures = "0.3"
-
-# Time and date
-chrono = { version = "0.4", features = ["serde"] }
-
-# UUID generation
-uuid = { version = "1.0", features = ["v4", "serde"] }
-
-# Error handling
-thiserror = "1.0"
-anyhow = "1.0"
-
-# JSON handling
-serde_json = "1.0"
-
-# HTTP server
-axum = "0.7"
-tower = "0.4"
-tower-http = { version = "0.5", features = ["cors", "trace"] }
-
-# WebSocket
-tokio-tungstenite = "0.20"
-
-# Async file I/O
-tokio-util = "0.7"
-
-# Metrics and monitoring
-prometheus = "0.13"
-
-# Configuration management
-config = "0.14"
-toml = "0.8"
 
 # Environment variables
 dotenv = "0.15"
