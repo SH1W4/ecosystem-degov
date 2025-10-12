@@ -2,21 +2,22 @@
 name = "trinity-ai-agent"
 version = "1.0.0"
 edition = "2021"
-
-[[bin]]
-name = "trinity_ai_agent"
-path = "src/main_trinity_ai_agent.rs"
-
-[[bin]]
-name = "esg_token_backend"
-path = "src/main.rs"
+authors = ["João <joao@example.com>"]
+description = "Trinity AI Agent - Autonomous AI Agent for ESG Token Ecosystem Management"
+license = "MIT"
+repository = "https://github.com/your-username/trinity-ai-agent"
+keywords = ["ai", "agent", "autonomous", "esg", "blockchain", "tokens", "mcp", "llm"]
+categories = ["artificial-intelligence", "blockchain", "development-tools"]
 
 [dependencies]
-# Web Framework
-axum = "0.7"
+# Core async runtime
 tokio = { version = "1.0", features = ["full"] }
+
+# HTTP and WebSocket
+axum = "0.7"
 tower = "0.4"
 tower-http = { version = "0.5", features = ["cors", "trace"] }
+tokio-tungstenite = "0.20"
 
 # Serialization
 serde = { version = "1.0", features = ["derive"] }
@@ -26,19 +27,8 @@ serde_json = "1.0"
 uuid = { version = "1.0", features = ["v4", "serde"] }
 chrono = { version = "0.4", features = ["serde"] }
 
-# Error Handling
-anyhow = "1.0"
-thiserror = "1.0"
-
-# Logging
-env_logger = "0.10"
-
-# Trinity AI Agent Dependencies
 # HTTP client
 reqwest = { version = "0.11", features = ["json"] }
-
-# WebSocket support
-tokio-tungstenite = "0.20"
 
 # Database
 sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres", "chrono", "uuid"] }
@@ -51,21 +41,35 @@ base64 = "0.21"
 # Configuration
 config = "0.14"
 toml = "0.8"
+dotenv = "0.15"
 
 # Random number generation
 rand = "0.8"
 
 # Async utilities
 futures = "0.3"
-
-# Async file I/O
 tokio-util = "0.7"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+env_logger = "0.10"
+log = "0.4"
 
 # Metrics and monitoring
 prometheus = "0.13"
 
-# Environment variables
-dotenv = "0.15"
-
 [dev-dependencies]
 tokio-test = "0.4"
+
+[[bin]]
+name = "trinity_ai_agent"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"

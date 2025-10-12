@@ -1,13 +1,14 @@
-# Dependencies
-node_modules/
-target/
-.cargo/
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
 
 # IDE
-.vscode/settings.json
+.vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS
 .DS_Store
@@ -22,36 +23,25 @@ logs/
 .env.local
 .env.production
 
-# Build artifacts
-artifacts/
-cache/
-dist/
-build/
+# Database
+*.db
+*.sqlite
+*.sqlite3
 
 # Temporary files
+tmp/
+temp/
 *.tmp
-*.temp
-*.bak
 
-# Deployment info (sensitive)
-deployments/*/private-keys/
-deployments/*/secrets/
+# Build artifacts
+dist/
+build/
+out/
 
-# Test coverage
-coverage/
-*.lcov
+# Node modules (if any)
+node_modules/
 
-# Rust
-Cargo.lock
-target/
-
-# Hardhat
-artifacts/
-cache/
-typechain/
-typechain-types/
-
-# Python
+# Python (if any)
 __pycache__/
 *.pyc
 *.pyo
@@ -59,16 +49,21 @@ __pycache__/
 .Python
 env/
 venv/
-.venv/
+ENV/
 
-# Jupyter
-.ipynb_checkpoints/
+# Docker
+.dockerignore
+Dockerfile.dev
 
-# Database
-*.db
-*.sqlite
-*.sqlite3
+# Coverage
+coverage/
+*.lcov
+
+# Profiling
+*.prof
+perf.data*
 
 # Backup files
+*.bak
 *.backup
 *.old
