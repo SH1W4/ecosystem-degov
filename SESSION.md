@@ -11,10 +11,11 @@
 - **Status**: ✅ **100% FUNCIONAL**
 
 #### **🤖 IA ÉTICA INTEGRADA**
+- **AET Token** criado para IA ética
 - **Sistema de scoring ético** (0-1000)
 - **Green AI incentives** para sustentabilidade
 - **Transparency & bias detection** automática
-- **Human-aligned AI rewards** em GST
+- **Human-aligned AI rewards** em AET
 
 #### **🔧 FUNCIONALIDADES TESTADAS**
 - ✅ **Sistema de staking** (15% APY + bônus sustentabilidade)

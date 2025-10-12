@@ -57,6 +57,13 @@ async function main() {
     await egmToken.deployed();
     console.log("✅ EGM Token deployed to:", egmToken.address);
     
+    // Deploy AET Token (AI Ethics)
+    console.log("\n🤖 Deployando AET Token (AI Ethics)...");
+    const AETToken = await ethers.getContractFactory("AETToken");
+    const aetToken = await AETToken.deploy();
+    await aetToken.deployed();
+    console.log("✅ AET Token deployed to:", aetToken.address);
+    
     // Configure integrations
     console.log("\n🔗 Configurando integrações...");
     
@@ -65,6 +72,7 @@ async function main() {
     await ecrToken.setGSTToken(gstToken.address);
     await estToken.setGSTToken(gstToken.address);
     await egmToken.setGSTToken(gstToken.address);
+    await aetToken.setGSTToken(gstToken.address);
     
     console.log("✅ Integrações configuradas");
     
@@ -122,6 +130,13 @@ async function main() {
                 symbol: "EGM",
                 supply: "1,000,000 EGM",
                 role: "Token Premium"
+            },
+            AETToken: {
+                address: aetToken.address,
+                name: "AI Ethics Token",
+                symbol: "AET",
+                supply: "500,000,000 AET",
+                role: "IA Ética"
             }
         }
     };
@@ -142,6 +157,7 @@ async function main() {
     console.log("🏆 ECR (Certificados):", ecrToken.address);
     console.log("💎 EST (Stake):", estToken.address);
     console.log("💎 EGM (Premium):", egmToken.address);
+    console.log("🤖 AET (IA Ética):", aetToken.address);
     
     console.log("\n🚀 Próximos passos:");
     console.log("1. Verificar contratos no explorer");

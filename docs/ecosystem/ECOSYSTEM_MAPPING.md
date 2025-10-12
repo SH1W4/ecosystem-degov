@@ -65,6 +65,18 @@ Criar um ecossistema de tokens ESG (Environmental, Social, Governance) integrado
 - **Rewards**: Recompensas em GST por IA ética
 - **Certificates**: NFTs de conquistas éticas
 
+### **🤖 AET TOKEN (AI ETHICS TOKEN)**
+- **Função**: Token específico para incentivar práticas éticas em IA
+- **Características**:
+    - Sistema de scoring ético (0-1000)
+    - Green AI incentives para sustentabilidade
+    - Transparency & bias detection rewards
+    - Human-aligned AI bonuses
+    - Cross-platform integration
+- **Blockchain**: Ethereum (compatível com EVM)
+- **Supply**: 500,000,000 AET (500 milhões)
+- **Status**: ✅ **IMPLEMENTADO**
+
 ---
 
 ## 🚀 **SMART CONTRACTS IMPLEMENTADOS**
