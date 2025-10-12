@@ -1,10 +1,11 @@
 # 🌱 **ECOSYSTEM-DEGOV**
-## **ESG Token Ecosystem - Backend Rust para Tokenização ESG**
+## **ESG + IA ÉTICA TOKEN ECOSYSTEM - Backend Rust para Tokenização ESG e IA Ética**
 
 [![Rust](https://img.shields.io/badge/Rust-1.70+-orange.svg)](https://www.rust-lang.org/)
 [![Axum](https://img.shields.io/badge/Axum-0.7-blue.svg)](https://github.com/tokio-rs/axum)
 [![Blockchain](https://img.shields.io/badge/Blockchain-Hybrid-green.svg)](https://ethereum.org/)
-[![ESG](https://img.shields.io/badge/ESG-7%20Tokens-brightgreen.svg)](https://en.wikipedia.org/wiki/Environmental,_social,_and_corporate_governance)
+[![ESG](https://img.shields.io/badge/ESG-8%20Tokens-brightgreen.svg)](https://en.wikipedia.org/wiki/Environmental,_social,_and_corporate_governance)
+[![AI Ethics](https://img.shields.io/badge/AI%20Ethics-AET%20Token-purple.svg)](https://en.wikipedia.org/wiki/Artificial_intelligence_ethics)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success.svg)](https://github.com/SH1W4/ecosystem-degov)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -12,62 +13,192 @@
 
 ## 🎯 **VISÃO GERAL**
 
-O **Ecosystem-Degov** é um backend Rust de alta performance para tokenização de métricas ESG (Environmental, Social, and Governance), projetado para criar um ecossistema sustentável tokenizado com 7 tokens interconectados e blockchain híbrida.
+O **Ecosystem-Degov** é a **primeira plataforma blockchain global** que combina **tokenização ESG** com **IA ética**, criando um ecossistema completo de incentivos econômicos para sustentabilidade e responsabilidade artificial. Este backend Rust de alta performance integra **8 tokens interconectados** com blockchain híbrida e AI/ML avançado.
 
 ### **Características Principais:**
-- 🪙 **7 Tokens ESG** - ECT, ECS, CCR, ECR, EST, EGM, GST
+- 🪙 **8 Tokens ESG + IA Ética** - GST, AET, ECT, ECS, CCR, ECR, EST, EGM
 - 🔗 **Blockchain Híbrida** - Privada (Hyperledger Besu) + Pública (Ethereum, Polygon, Celo, XRPL)
-- 🤖 **AI/ML Integrado** - Computer Vision, NLP, Analytics, Predictions
+- 🤖 **AI/ML Integrado** - Computer Vision, NLP, Analytics, Predictions, Ethical AI
 - 🏗️ **Arquitetura Modular** - Microserviços escaláveis
 - 🔒 **Segurança Enterprise** - Criptografia robusta e compliance
-- 📊 **Analytics ESG** - Dashboards e insights em tempo real
-- 🌐 **Cross-Platform** - Integração com GuardFlow e GuardDrive
+- 📊 **Analytics ESG + IA** - Dashboards e insights em tempo real
+- 🌐 **Cross-Platform** - Integração com GuardFlow, GuardDrive e Virtual Protocol
 
 ---
 
 ## 🏗️ **ARQUITETURA**
 
-### **ESG Token Ecosystem Architecture:**
+### **ESG + IA Ética Token Ecosystem Architecture:**
 
 ```mermaid
 graph TB
     subgraph "🌐 Frontend Layer"
         A[Web Dashboard] --> B[Mobile App]
         B --> C[Admin Panel]
+        C --> D[AI Ethics Dashboard]
     end
     
     subgraph "🔌 API Gateway"
-        D[ESG API Gateway] --> E[Rate Limiting]
-        E --> F[Authentication]
+        E[ESG API Gateway] --> F[Rate Limiting]
+        F --> G[Authentication]
+        G --> H[AI Ethics API]
     end
     
     subgraph "🦀 Rust Backend"
-        G[ESG Metrics Service] --> H[Token Services]
-        H --> I[AI/ML Services]
-        I --> J[Blockchain Integration]
+        I[ESG Metrics Service] --> J[Token Services]
+        J --> K[AI/ML Services]
+        K --> L[Blockchain Integration]
+        L --> M[Ethical AI Service]
     end
     
-    subgraph "🪙 Token Ecosystem"
-        K[EcoToken ECT] --> L[EcoScore ECS]
-        L --> M[CarbonCredit CCR]
-        M --> N[EcoCertificate ECR]
-        N --> O[EcoStake EST]
-        O --> P[EcoGem EGM]
-        P --> Q[GST Token]
+    subgraph "🪙 Token Ecosystem (8 Tokens)"
+        N[GST - Green Sustainability] --> O[AET - AI Ethics]
+        O --> P[ECT - EcoToken]
+        P --> Q[ECS - EcoScore]
+        Q --> R[CCR - Carbon Credit]
+        R --> S[ECR - EcoCertificate NFT]
+        S --> T[EST - EcoStake]
+        T --> U[EGM - EcoGem Premium]
     end
     
-    subgraph "🔗 Blockchain Networks"
-        R[Ethereum] --> S[Polygon]
-        S --> T[Celo]
-        T --> U[XRPL]
-        U --> V[Hyperledger Besu]
+    subgraph "🔗 Blockchain Layer"
+        V[Ethereum Mainnet] --> W[Polygon]
+        W --> X[Celo Network]
+        X --> Y[Hyperledger Besu]
     end
     
-    A --> D
-    D --> G
-    G --> K
-    K --> R
+    subgraph "🤖 AI/ML Layer"
+        Z[Computer Vision] --> AA[NLP Processing]
+        AA --> BB[Predictive Analytics]
+        BB --> CC[Ethical AI Scoring]
+        CC --> DD[Virtual Protocol Integration]
+    end
+    
+    A --> E
+    E --> I
+    I --> N
+    N --> V
+    V --> Z
 ```
+
+---
+
+## 🪙 **ECOSYSTEM TOKENS (8 TOKENS)**
+
+### **🥇 TOKENS PRINCIPAIS**
+
+#### **🌱 GST Token (Green Sustainability Token) - TOKEN PRINCIPAL**
+- **Função**: Token principal do ecossistema ESG
+- **Características**:
+  - Sistema de staking (15% APY + bônus sustentabilidade)
+  - Sustainability scoring (0-1000)
+  - Gamificação & rewards
+  - Governance & marketplace
+- **Blockchain**: Ethereum (compatível com EVM)
+- **Supply**: 1,000,000,000 GST (1 bilhão)
+- **Status**: ✅ **IMPLEMENTADO**
+
+#### **🤖 AET Token (AI Ethics Token) - IA ÉTICA**
+- **Função**: Token específico para incentivar práticas éticas em IA
+- **Características**:
+  - Sistema de scoring ético (0-1000)
+  - Green AI incentives para sustentabilidade
+  - Transparency & bias detection rewards
+  - Human-aligned AI bonuses
+  - Cross-platform integration
+- **Blockchain**: Ethereum (compatível com EVM)
+- **Supply**: 500,000,000 AET (500 milhões)
+- **Status**: ✅ **IMPLEMENTADO**
+
+### **🌍 TOKENS ESG**
+
+#### **🌱 ECT Token (EcoToken) - RECOMPENSAS ESG**
+- **Função**: Token de recompensas ESG
+- **Características**:
+  - Sistema de scoring ESG (0-1000)
+  - Recompensas automáticas por sustentabilidade
+  - Sistema de conquistas
+  - Integração com GST Token
+- **Blockchain**: Ethereum (compatível com EVM)
+- **Supply**: 1,000,000,000 ECT (1 bilhão)
+- **Status**: ✅ **IMPLEMENTADO**
+
+#### **🌍 CCR Token (Carbon Credit Token) - CRÉDITOS DE CARBONO**
+- **Função**: Tokenização de créditos de carbono verificados
+- **Características**:
+  - 1 CCR = 1 tonelada CO2 equivalente
+  - Padrões verificados (VCS, Gold Standard, CDM, CAR)
+  - Marketplace de créditos
+  - Sistema de aposentadoria
+- **Blockchain**: Ethereum (compatível com EVM)
+- **Supply**: 100,000,000 CCR (100 milhões)
+- **Status**: ✅ **IMPLEMENTADO**
+
+#### **📊 ECS Token (EcoScore Token) - SISTEMA DE PONTUAÇÃO**
+- **Função**: Sistema de pontuação ESG
+- **Características**:
+  - Scoring ESG (0-1000)
+  - Níveis e benefícios
+  - Integração com GST
+  - Gamificação avançada
+- **Blockchain**: Ethereum (compatível com EVM)
+- **Supply**: 100,000,000 ECS (100 milhões)
+- **Status**: 🔄 **EM DESENVOLVIMENTO**
+
+#### **🏆 ECR Token (EcoCertificate Token) - CERTIFICADOS NFT**
+- **Função**: Certificados ESG únicos (NFT)
+- **Características**:
+  - Certificados NFT únicos
+  - Metadata dinâmica
+  - Sistema de verificação
+  - Marketplace de certificados
+- **Blockchain**: Ethereum (ERC-721)
+- **Supply**: Ilimitado (NFTs únicos)
+- **Status**: 🔄 **EM DESENVOLVIMENTO**
+
+#### **💰 EST Token (EcoStake Token) - STAKING AVANÇADO**
+- **Função**: Sistema de staking avançado
+- **Características**:
+  - Staking tiers
+  - Governança por stake
+  - Recompensas escalonadas
+  - Integração com GST
+- **Blockchain**: Ethereum (compatível com EVM)
+- **Supply**: 100,000,000 EST (100 milhões)
+- **Status**: 🔄 **EM DESENVOLVIMENTO**
+
+#### **💎 EGM Token (EcoGem Token) - PREMIUM VIP**
+- **Função**: Token premium VIP
+- **Características**:
+  - Benefícios exclusivos
+  - Acesso a features premium
+  - Sistema de tiers
+  - Integração com GST
+- **Blockchain**: Ethereum (compatível com EVM)
+- **Supply**: 50,000,000 EGM (50 milhões)
+- **Status**: 🔄 **EM DESENVOLVIMENTO**
+
+---
+
+## 🤖 **INTEGRAÇÃO IA ÉTICA**
+
+### **🎯 SISTEMA DE SCORING ÉTICO**
+- **Transparency Score** (0-1000): Algoritmos explicáveis
+- **Bias Detection** (0-1000): Detecção de vieses
+- **Human Alignment** (0-1000): Alinhamento humano
+- **Environmental Impact** (0-1000): Impacto ambiental da IA
+
+### **🌱 GREEN AI INCENTIVES**
+- **Energy Efficiency**: Recompensas por IA eficiente
+- **Carbon Footprint**: Redução de pegada de carbono
+- **Sustainable Computing**: Computação sustentável
+- **Green Algorithms**: Algoritmos verdes
+
+### **🔍 TRANSPARENCY & BIAS DETECTION**
+- **Algorithm Explainability**: Explicabilidade de algoritmos
+- **Bias Mitigation**: Mitigação de vieses
+- **Data Privacy**: Proteção de dados
+- **Human Oversight**: Supervisão humana
 
 ---
 
@@ -75,281 +206,194 @@ graph TB
 
 ### **Pré-requisitos:**
 - Rust 1.70+
-- PostgreSQL 15+
-- Redis 7+
+- Node.js 18+
+- PostgreSQL 14+
+- Redis 6+
 - Docker (opcional)
 
-### **Quick Start:**
+### **Instalação:**
+```bash
+# Clone o repositório
+git clone https://github.com/SH1W4/ecosystem-degov.git
+cd ecosystem-degov
 
-1. **Clone o repositório**
-   ```bash
-   git clone https://github.com/SH1W4/ecosystem-degov.git
-   cd ecosystem-degov
-   ```
+# Instale dependências Rust
+cargo build --release
 
-2. **Instalar dependências**
-   ```bash
-   cargo build --release
-   ```
+# Instale dependências Node.js
+npm install
 
-3. **Configurar variáveis de ambiente**
-   ```bash
-   cp .env.example .env
-   # Editar .env com suas configurações
-   ```
+# Configure variáveis de ambiente
+cp .env.example .env
+# Edite .env com suas configurações
 
-4. **Executar o backend**
-   ```bash
-   cargo run --release
-   ```
+# Execute o backend
+cargo run --release
+```
 
-5. **Testar a API**
-   ```bash
-   curl http://localhost:3000/health
-   ```
+### **Deploy dos Smart Contracts:**
+```bash
+# Instale Hardhat
+npm install -g hardhat
+
+# Deploy local
+npx hardhat run scripts/deploy.js --network localhost
+
+# Deploy testnet
+npx hardhat run scripts/deploy.js --network goerli
+```
 
 ---
 
 ## 📊 **API ENDPOINTS**
 
-### **Health Check:**
-- `GET /health` - Status do serviço
+### **ESG Metrics API:**
+- `GET /api/v1/esg/metrics` - Métricas ESG
+- `POST /api/v1/esg/score` - Atualizar score ESG
+- `GET /api/v1/esg/profile/{address}` - Perfil ESG do usuário
 
-### **ESG Integration:**
-- `GET /api/v1/esg/unified-profile/:user_id` - Perfil ESG unificado
-- `POST /api/v1/esg/transfer-unified` - Transferência unificada
-- `GET /api/v1/esg/platform-metrics/:user_id` - Métricas de plataforma
+### **Token Management API:**
+- `GET /api/v1/tokens/balance/{address}` - Saldo de tokens
+- `POST /api/v1/tokens/transfer` - Transferir tokens
+- `POST /api/v1/tokens/stake` - Fazer stake
+- `POST /api/v1/tokens/unstake` - Remover stake
 
-### **EcoToken Ecosystem:**
-- `GET /api/v1/ecosystem/balance/:user_id` - Balance do ecossistema
-- `POST /api/v1/ecosystem/transfer` - Transferência cross-ecosystem
-- `GET /api/v1/ecosystem/stats` - Estatísticas do ecossistema
+### **AI Ethics API:**
+- `GET /api/v1/ai/ethics/score/{address}` - Score ético de IA
+- `POST /api/v1/ai/ethics/update` - Atualizar score ético
+- `GET /api/v1/ai/ethics/achievements/{address}` - Conquistas de IA ética
 
-### **7 Tokens ESG:**
-- **EcoToken (ECT)**: `GET /api/v1/ecotoken/balance/:address`
-- **EcoScore (ECS)**: `GET /api/v1/ecoscore/profile/:user_id`
-- **CarbonCredit (CCR)**: `GET /api/v1/carboncredits/balance/:user_id`
-- **EcoCertificate (ECR)**: `GET /api/v1/certificates/user/:user_id`
-- **EcoStake (EST)**: `GET /api/v1/ecostake/position/:user_id`
-- **EcoGem (EGM)**: `GET /api/v1/ecogem/balance/:user_id`
-- **GST Token**: `GET /api/v1/gst/balance/:address/:token_id`
-
----
-
-## 🪙 **ECOSYSTEM DE 7 TOKENS**
-
-### **1. EcoToken (ECT) - Token Principal**
-- **Propósito**: Token principal de utilidade
-- **Blockchain**: Ethereum, Polygon, Celo
-- **Supply**: 1,000,000,000 ECT
-- **Use Cases**: Pagamentos, Staking, Governance
-
-### **2. EcoScore (ECS) - Score ESG Tokenizado**
-- **Propósito**: Score ESG tokenizado
-- **Blockchain**: Hyperledger Besu (Private)
-- **Supply**: Dinâmico baseado em métricas
-- **Use Cases**: Avaliação, Certificação, Compliance
-
-### **3. CarbonCredit (CCR) - Créditos de Carbono**
-- **Propósito**: Créditos de carbono
-- **Blockchain**: Ethereum, Polygon
-- **Supply**: Baseado em reduções verificadas
-- **Use Cases**: Compensação, Trading, Compliance
-
-### **4. EcoCertificate (ECR) - Certificados de Sustentabilidade**
-- **Propósito**: Certificados de sustentabilidade
-- **Blockchain**: Ethereum (ERC-721)
-- **Supply**: Limitado por certificação
-- **Use Cases**: Certificação, Verificação, Compliance
-
-### **5. EcoStake (EST) - Sistema de Staking**
-- **Propósito**: Staking e recompensas
-- **Blockchain**: Ethereum, Polygon
-- **Supply**: Dinâmico baseado em staking
-- **Use Cases**: Staking, Rewards, Governance
-
-### **6. EcoGem (EGM) - Gemas de Raridade**
-- **Propósito**: Gemas de raridade
-- **Blockchain**: Ethereum (ERC-1155)
-- **Supply**: Limitado e raro
-- **Use Cases**: NFTs, Collectibles, Rewards
-
-### **7. GST (Green Sustainability Token) - Token de Sustentabilidade Verde**
-- **Propósito**: Token de sustentabilidade verde e gamificação
-- **Blockchain**: Ethereum
-- **Supply**: 1,000,000,000 GST
-- **Use Cases**: Gamificação, Marketplace, Governança, NFE/NFT, Sustentabilidade Verde
+### **Carbon Credits API:**
+- `GET /api/v1/carbon/credits` - Listar créditos de carbono
+- `POST /api/v1/carbon/issue` - Emitir crédito de carbono
+- `POST /api/v1/carbon/retire` - Aposentar crédito de carbono
 
 ---
 
-## 🔗 **INTEGRAÇÃO COM GUARDFLOW**
+## 🔗 **INTEGRAÇÃO COM VIRTUAL PROTOCOL**
 
-### **Fluxo de Integração:**
-```
-GuardFlow (Checkout ESG) → API Gateway → Ecosystem-Degov (ESG Tokens)
-                                    ↓
-                            Bridge de Integração
-                                    ↓
-                            Perfil ESG Unificado
-```
+### **🤖 AGENT REGISTRATION**
+- **Sistema de Registro**: Agentes IA se registram no ecossistema
+- **Ethics Scoring**: Scoring automático de ética em IA
+- **Reward Distribution**: Distribuição de recompensas em tempo real
+- **Cross-platform Sync**: Sincronização GST ↔ AET
 
-### **Funcionalidades Integradas:**
-- **Cross-Platform Balance** - Saldo unificado entre plataformas
-- **ESG Profile Unification** - Perfil ESG consolidado
-- **Token Transfer** - Transferência entre implementações
-- **Platform Metrics** - Métricas consolidadas
-- **Achievements System** - Sistema de conquistas ESG
+### **🎯 MONETIZAÇÃO DE AGENTES IA**
+- **Agent Rewards**: AET tokens por comportamento ético
+- **User Incentives**: GST tokens por usar IA ética
+- **Platform Fees**: Receita de uso de IA ética
+- **Data Monetization**: Monetização de insights de IA ética
 
 ---
 
-## 🤖 **AI/ML SERVICES**
+## 🎮 **GAMIFICAÇÃO E REWARDS**
 
-### **Computer Vision:**
-- Análise de imagens ESG
-- Reconhecimento de certificações
-- Verificação de sustentabilidade
+### **🏆 SISTEMA DE CONQUISTAS**
+- **ESG Achievements**: Conquistas por sustentabilidade
+- **AI Ethics Achievements**: Conquistas por IA ética
+- **Carbon Footprint Achievements**: Conquistas por pegada de carbono
+- **Social Impact Achievements**: Conquistas por impacto social
 
-### **NLP (Natural Language Processing):**
-- Análise de relatórios ESG
-- Extração de métricas
-- Classificação de conteúdo
-
-### **Analytics & Predictions:**
-- Predição de scores ESG
-- Análise de tendências
-- Recomendações de melhoria
+### **💰 SISTEMA DE RECOMPENSAS**
+- **ESG Rewards**: Recompensas por práticas ESG
+- **AI Ethics Rewards**: Recompensas por IA ética
+- **Staking Rewards**: Recompensas por staking
+- **Achievement Rewards**: Recompensas por conquistas
 
 ---
 
 ## 🔒 **SEGURANÇA E COMPLIANCE**
 
-### **Padrões de Segurança:**
-- **AES-256 Encryption** - Criptografia de dados
-- **JWT Authentication** - Autenticação segura
-- **Rate Limiting** - Proteção contra ataques
-- **Audit Logging** - Logs de auditoria
+### **🛡️ SEGURANÇA**
+- **Criptografia End-to-End**: Proteção de dados
+- **Multi-signature Wallets**: Carteiras multi-assinatura
+- **Smart Contract Audits**: Auditorias de contratos
+- **Penetration Testing**: Testes de penetração
 
-### **Compliance:**
-- **ISO 27001** - Information Security Management
-- **SOC 2 Type II** - Security, Availability, Processing Integrity
-- **GDPR** - General Data Protection Regulation
-- **ESG Standards** - GRI, SASB, TCFD, GHG Protocol
-
----
-
-## 📈 **MÉTRICAS E KPIs**
-
-### **Métricas Técnicas:**
-- **API Response Time**: < 200ms
-- **Database Performance**: < 100ms
-- **Uptime**: > 99.9%
-- **Throughput**: 10k+ TPS
-
-### **Métricas ESG:**
-- **Carbon Offset**: 1000+ tons CO2
-- **ESG Reports**: 1000+ generated
-- **Sustainability Score**: 8.5+ average
-- **Green Investments**: $10M+ facilitated
+### **📋 COMPLIANCE**
+- **GRI Standards**: Padrões GRI
+- **SASB Standards**: Padrões SASB
+- **TCFD Framework**: Framework TCFD
+- **GHG Protocol**: Protocolo GHG
+- **ISO 14064**: Padrão ISO 14064
+- **MiCA Compliance**: Conformidade MiCA
+- **FATF Guidelines**: Diretrizes FATF
+- **AML/KYC**: AML/KYC
+- **GDPR Compliance**: Conformidade GDPR
 
 ---
 
-## 🧪 **TESTING**
+## 📈 **ROADMAP**
 
-### **Testes Automatizados:**
-```bash
-# Executar todos os testes
-cargo test
+### **🎯 FASE 1: CONSOLIDAÇÃO TÉCNICA (Q1 2025)**
+- ✅ **GST Token** - Deployado e funcional
+- ✅ **AET Token** - Deployado e funcional
+- ✅ **ECT Token** - Deployado e funcional
+- ✅ **CCR Token** - Deployado e funcional
+- 🔄 **ECS Token** - Em desenvolvimento
+- 🔄 **ECR Token** - Em desenvolvimento
+- 🔄 **EST Token** - Em desenvolvimento
+- 🔄 **EGM Token** - Em desenvolvimento
 
-# Testes específicos
-cargo test --test esg_integration
-cargo test --test token_ecosystem
-```
+### **🌐 FASE 2: EXPANSÃO E TESTNET (Q2 2025)**
+- 🎯 **Deploy em Testnet** (Goerli, Sepolia, Mumbai)
+- 🎯 **Integração Virtual Protocol** completa
+- 🎯 **Gamificação Avançada** (NFTs, Achievements)
+- 🎯 **Community Building** e documentação
 
-### **Testes de Integração:**
-```bash
-# Testar endpoints ESG
-curl -X GET http://localhost:3000/api/v1/esg/unified-profile/user123
-
-# Testar transferência unificada
-curl -X POST http://localhost:3000/api/v1/esg/transfer-unified \
-  -H "Content-Type: application/json" \
-  -d '{"from_platform": "guardrive", "to_platform": "guardflow", "amount": 1000}'
-```
-
----
-
-## 🚀 **DEPLOYMENT**
-
-### **Desenvolvimento:**
-```bash
-cargo run --bin ecosystem-degov
-```
-
-### **Produção:**
-```bash
-# Docker
-docker build -t ecosystem-degov .
-docker run -p 3000:3000 ecosystem-degov
-
-# Kubernetes
-kubectl apply -f k8s/
-```
+### **🚀 FASE 3: ESCALA E MAINNET (Q3-Q4 2025)**
+- 🌍 **Deploy em Mainnet** (Ethereum, Polygon)
+- 🌍 **Parcerias Estratégicas** (Virtual Protocol, empresas ESG)
+- 🌍 **Expansão Global** (10+ países)
+- 🌍 **Ecossistema Completo** funcionando
 
 ---
 
-## 📚 **DOCUMENTAÇÃO**
+## 🤝 **CONTRIBUIÇÃO**
 
-- **API Reference**: `/docs/api-reference.md`
-- **Architecture Guide**: `/docs/architecture.md`
-- **Development Guide**: `/docs/development.md`
-- **ESG Integration**: `/GUARDFLOW_INTEGRATION.md`
-- **Consolidation Status**: `/CONSOLIDATION_STATUS.md`
-
----
-
-## 🤝 **CONTRIBUTING**
-
-Agradecemos contribuições! Por favor, veja nosso [Guia de Contribuição](CONTRIBUTING.md) para detalhes.
-
+### **Como Contribuir:**
 1. Fork o repositório
-2. Crie sua branch de feature (`git checkout -b feature/AmazingFeature`)
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
 3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
 4. Push para a branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
 
+### **Guidelines:**
+- Siga as convenções de código Rust
+- Escreva testes para novas funcionalidades
+- Documente APIs e funções
+- Mantenha compatibilidade com versões anteriores
+
 ---
 
-## 📄 **LICENSE**
+## 📄 **LICENÇA**
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 ---
 
-## 👥 **TEAM**
+## 🏆 **RECONHECIMENTOS**
 
-- **SH1W4** - *Initial work* - [GitHub](https://github.com/SH1W4)
-
----
-
-## 🙏 **ACKNOWLEDGMENTS**
-
-- Comunidade Rust e Axum
-- Comunidade Blockchain e ESG
-- Desenvolvedores de código aberto
-- Todos os contribuidores e testadores
+- **OpenZeppelin**: Contratos seguros e auditados
+- **Hardhat**: Framework de desenvolvimento Ethereum
+- **Axum**: Framework web assíncrono para Rust
+- **Virtual Protocol**: Integração para monetização de agentes IA
 
 ---
 
-## 📞 **SUPPORT**
+## 📞 **CONTATO**
 
-- **Documentação**: [docs.ecosystem-degov.com](https://docs.ecosystem-degov.com)
-- **Issues**: [GitHub Issues](https://github.com/SH1W4/ecosystem-degov/issues)
-- **Email**: support@ecosystem-degov.com
-- **Discord**: [ESG Token Community](https://discord.gg/esg-token)
+- **Website**: [ecosystem-degov.com](https://ecosystem-degov.com)
+- **Email**: contact@ecosystem-degov.com
+- **Discord**: [Discord Server](https://discord.gg/ecosystem-degov)
+- **Twitter**: [@EcosystemDegov](https://twitter.com/EcosystemDegov)
 
 ---
 
-<div align="center">
-Made with 🌱 by SH1W4 | ESG Token Ecosystem<br/>
-Backend Rust para Tokenização ESG
-</div>
+## 🌟 **STAR O PROJETO**
+
+Se este projeto foi útil para você, considere dar uma ⭐ no GitHub!
+
+---
+
+**🚀 Pronto para revolucionar ESG e IA ética através da tokenização blockchain!**

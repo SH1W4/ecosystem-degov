@@ -3,19 +3,25 @@
 ## 📊 **VISÃO GERAL DO ECOSSISTEMA CRIADO**
 
 ### **🎯 MISSÃO**
-Criar um ecossistema de tokens ESG (Environmental, Social, Governance) integrado a projetos de mobilidade, varejo e **Inteligência Artificial Ética**, incentivando sustentabilidade através de gamificação e recompensas.
+Criar o **primeiro ecossistema global** de tokens ESG (Environmental, Social, Governance) + **IA ética** integrado a projetos de mobilidade, varejo e **Inteligência Artificial Ética**, incentivando sustentabilidade e responsabilidade artificial através de gamificação e recompensas tokenizadas.
 
 ### **🏗️ ARQUITETURA DO ECOSSISTEMA**
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    ECOSYSTEM ESG TOKENS                     │
+│                ECOSYSTEM ESG + IA ÉTICA TOKENS              │
 ├─────────────────────────────────────────────────────────────┤
 │  🥇 GST (Green Sustainability Token) - TOKEN PRINCIPAL       │
 │  ├── Staking System (15% APY + bônus sustentabilidade)     │
 │  ├── Sustainability Scoring (0-1000)                       │
 │  ├── Gamification & Rewards                                │
 │  └── Governance & Marketplace                              │
+├─────────────────────────────────────────────────────────────┤
+│  🤖 AET (AI Ethics Token) - IA ÉTICA                        │
+│  ├── Ethical AI Scoring (0-1000)                           │
+│  ├── Green AI Incentives                                    │
+│  ├── Transparency & Bias Detection                          │
+│  └── Human-aligned AI Rewards                               │
 ├─────────────────────────────────────────────────────────────┤
 │  🚗 MOBILITY INTEGRATION                                    │
 │  ├── GuardDrive (Telemetria de Veículos)                   │

@@ -97,6 +97,8 @@ contract ESTToken is ERC20, ERC20Burnable, Ownable, ReentrancyGuard, IESToken {
     event TokensLocked(address indexed user, uint256 amount, uint256 lockPeriod);
     event TokensUnlocked(address indexed user, uint256 amount);
     event GSTRewardEarned(address indexed user, uint256 amount);
+    event TokensMinted(address indexed to, uint256 amount, string reason);
+    event TokensBurned(address indexed from, uint256 amount, string reason);
     
     constructor() ERC20("EcoStake Token", "EST") {
         _mint(msg.sender, INITIAL_SUPPLY);

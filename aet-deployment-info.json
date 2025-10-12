@@ -1,0 +1,24 @@
+{
+  "network": {
+    "name": "localhost",
+    "chainId": "1337"
+  },
+  "deployer": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+  "timestamp": "2025-10-12T13:46:17.888Z",
+  "contract": {
+    "AETToken": {
+      "name": "AI Ethics Token",
+      "symbol": "AET",
+      "supply": "500,000,000 AET",
+      "role": "IA Ética",
+      "features": [
+        "AI Ethics Scoring (0-1000)",
+        "Green AI Incentives",
+        "Transparency & Bias Detection",
+        "Human-Aligned AI Rewards",
+        "Achievement System",
+        "Cross-Platform Integration"
+      ]
+    }
+  }
+}

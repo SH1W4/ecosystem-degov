@@ -2,7 +2,7 @@
 
 ## 📋 **VISÃO GERAL TÉCNICA**
 
-O ESG Token Ecosystem é uma plataforma blockchain enterprise construída em Rust com arquitetura híbrida, integração AI/ML e 7 tokens interconectados para tokenização ESG.
+O ESG Token Ecosystem é uma plataforma blockchain enterprise construída em Rust com arquitetura híbrida, integração AI/ML e **8 tokens interconectados** para tokenização ESG + **IA ética**.
 
 ---
 
@@ -17,7 +17,7 @@ O ESG Token Ecosystem é uma plataforma blockchain enterprise construída em Rus
                                 │
                                 ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   AI/ML         │    │   Database      │    │   Blockchain    │
+│   AI/ML + Ethics│    │   Database      │    │   Blockchain    │
 │   Services      │◄──►│   (PostgreSQL)  │◄──►│   (Hybrid)      │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```

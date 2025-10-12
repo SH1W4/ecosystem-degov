@@ -90,6 +90,8 @@ contract ECSToken is ERC20, ERC20Burnable, Ownable, ReentrancyGuard, IESToken {
     event BenefitActivated(address indexed user, uint256 benefitId, string benefitName);
     event GSTRewardEarned(address indexed user, uint256 amount);
     event ProfileCreated(address indexed user, uint256 initialScore);
+    event TokensMinted(address indexed to, uint256 amount, string reason);
+    event TokensBurned(address indexed from, uint256 amount, string reason);
     
     constructor() ERC20("EcoScore Token", "ECS") {
         _mint(msg.sender, INITIAL_SUPPLY);
