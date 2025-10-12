@@ -1,0 +1,56 @@
+2025-10-12 08:51:30,574 - INFO - Iniciando organizacao enterprise...
+2025-10-12 08:51:30,576 - INFO - Analisando estrutura atual do repositorio...
+2025-10-12 08:51:30,583 - INFO - Analisados 23 arquivos
+2025-10-12 08:51:30,584 - INFO - Criando estrutura enterprise...
+2025-10-12 08:51:30,593 - INFO - Criado diretorio: docs/architecture
+2025-10-12 08:51:30,597 - INFO - Criado diretorio: docs/api
+2025-10-12 08:51:30,600 - INFO - Criado diretorio: docs/development
+2025-10-12 08:51:30,612 - INFO - Criado diretorio: docs/deployment
+2025-10-12 08:51:30,616 - INFO - Criado diretorio: docs/security
+2025-10-12 08:51:30,619 - INFO - Criado diretorio: docs/compliance
+2025-10-12 08:51:30,623 - INFO - Criado diretorio: docs/esg
+2025-10-12 08:51:30,625 - INFO - Criado diretorio: docs/integration
+2025-10-12 08:51:30,628 - INFO - Criado diretorio: docs/whitepaper
+2025-10-12 08:51:30,630 - INFO - Criado diretorio: docs/technical-specs
+2025-10-12 08:51:30,634 - INFO - Criado diretorio: tests/unit
+2025-10-12 08:51:30,639 - INFO - Criado diretorio: tests/integration
+2025-10-12 08:51:30,644 - INFO - Criado diretorio: tests/e2e
+2025-10-12 08:51:30,648 - INFO - Criado diretorio: tests/performance
+2025-10-12 08:51:30,652 - INFO - Criado diretorio: deployment/docker
+2025-10-12 08:51:30,655 - INFO - Criado diretorio: deployment/kubernetes
+2025-10-12 08:51:30,657 - INFO - Criado diretorio: deployment/terraform
+2025-10-12 08:51:30,663 - INFO - Criado diretorio: deployment/scripts
+2025-10-12 08:51:30,666 - INFO - Criado diretorio: monitoring/metrics
+2025-10-12 08:51:30,671 - INFO - Criado diretorio: monitoring/logging
+2025-10-12 08:51:30,676 - INFO - Criado diretorio: monitoring/alerting
+2025-10-12 08:51:30,680 - INFO - Criado diretorio: monitoring/dashboards
+2025-10-12 08:51:30,684 - INFO - Criado diretorio: enterprise/standards
+2025-10-12 08:51:30,687 - INFO - Criado diretorio: enterprise/compliance
+2025-10-12 08:51:30,692 - INFO - Criado diretorio: enterprise/governance
+2025-10-12 08:51:30,694 - INFO - Criado diretorio: enterprise/security
+2025-10-12 08:51:30,695 - INFO - Organizando documentos...
+2025-10-12 08:51:30,763 - INFO - Organizado: adaptive_docsync.py -> docs\general\adaptive_docsync.py
+2025-10-12 08:51:30,768 - INFO - Organizado: ADAPTIVE_DOCSYNC_FINAL_SUMMARY.md -> docs\general\ADAPTIVE_DOCSYNC_FINAL_SUMMARY.md
+2025-10-12 08:51:30,821 - INFO - Organizado: ADAPTIVE_DOCSYNC_GUIDE.md -> docs\general\ADAPTIVE_DOCSYNC_GUIDE.md
+2025-10-12 08:51:30,833 - INFO - Organizado: ADAPTIVE_DOCSYNC_IMPLEMENTATION_SUMMARY.md -> docs\general\ADAPTIVE_DOCSYNC_IMPLEMENTATION_SUMMARY.md
+2025-10-12 08:51:30,842 - INFO - Organizado: ADAPTIVE_DOCSYNC_README.md -> docs\general\ADAPTIVE_DOCSYNC_README.md
+2025-10-12 08:51:30,853 - INFO - Organizado: adaptive_docsync_report.json -> docs\general\adaptive_docsync_report.json
+2025-10-12 08:51:30,865 - INFO - Organizado: adaptive_docsync_simple.py -> docs\general\adaptive_docsync_simple.py
+2025-10-12 08:51:30,879 - INFO - Organizado: adaptive_structure.py -> docs\general\adaptive_structure.py
+2025-10-12 08:51:30,889 - INFO - Organizado: auto_organization.py -> docs\general\auto_organization.py
+2025-10-12 08:51:30,902 - INFO - Organizado: continuous_learning.py -> docs\general\continuous_learning.py
+2025-10-12 08:51:30,920 - INFO - Organizado: enterprise_docsync.py -> docs\general\enterprise_docsync.py
+2025-10-12 08:51:30,931 - INFO - Organizado: enterprise_structure_manager.py -> docs\general\enterprise_structure_manager.py
+2025-10-12 08:51:30,941 - INFO - Organizado: esg-token-adaptive-docsync.yaml -> docs\esg\esg-token-adaptive-docsync.yaml
+2025-10-12 08:51:30,954 - INFO - Organizado: esg-token-docsync-simple.yaml -> docs\esg\esg-token-docsync-simple.yaml
+2025-10-12 08:51:30,962 - INFO - Organizado: esg-token-docsync.yaml -> docs\esg\esg-token-docsync.yaml
+2025-10-12 08:51:30,968 - INFO - Organizado: INSTALLATION_GUIDE.md -> docs\general\INSTALLATION_GUIDE.md
+2025-10-12 08:51:30,974 - INFO - Organizado: README.md -> docs\general\README.md
+2025-10-12 08:51:30,979 - INFO - Organizado: README.metadata.json -> docs\general\README.metadata.json
+2025-10-12 08:51:30,984 - INFO - Organizado: README.metadata.metadata.json -> docs\general\README.metadata.metadata.json
+2025-10-12 08:51:30,990 - INFO - Organizado: templates\enterprise\esg-enterprise-architecture.md -> docs\esg\esg-enterprise-architecture.md
+2025-10-12 08:51:30,994 - INFO - Organizado: templates\project\esg-token-project.md -> docs\esg\esg-token-project.md
+2025-10-12 08:51:31,001 - INFO - Organizado: templates\project\esg-token-project.metadata.json -> docs\esg\esg-token-project.metadata.json
+2025-10-12 08:51:31,005 - INFO - Organizado: templates\project\esg-token-project.metadata.metadata.json -> docs\esg\esg-token-project.metadata.metadata.json
+2025-10-12 08:51:31,006 - INFO - Criando documentos enterprise...
+2025-10-12 08:51:31,014 - INFO - Organizacao enterprise concluida com sucesso!
