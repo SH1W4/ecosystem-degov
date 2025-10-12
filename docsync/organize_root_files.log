@@ -1,0 +1,65 @@
+2025-10-12 08:56:37,814 - INFO - Iniciando organizacao de arquivos da raiz...
+2025-10-12 08:56:37,816 - INFO - Criado diretorio: docs/development
+2025-10-12 08:56:37,818 - INFO - Criado diretorio: docs/architecture
+2025-10-12 08:56:37,820 - INFO - Criado diretorio: docs/whitepaper
+2025-10-12 08:56:37,821 - INFO - Criado diretorio: docs/integration
+2025-10-12 08:56:37,822 - INFO - Criado diretorio: docs/esg
+2025-10-12 08:56:37,822 - INFO - Criado diretorio: tests/integration
+2025-10-12 08:56:37,822 - INFO - Criado diretorio: tests/unit
+2025-10-12 08:56:37,823 - INFO - Iniciando organizacao de arquivos da raiz...
+2025-10-12 08:56:37,826 - WARNING - Arquivo nao encontrado: DESENVOLVIMENTO.md
+2025-10-12 08:56:37,826 - WARNING - Arquivo nao encontrado: CONSOLIDATION_PLAN.md
+2025-10-12 08:56:37,827 - WARNING - Arquivo nao encontrado: CONSOLIDATION_STATUS.md
+2025-10-12 08:56:37,828 - WARNING - Arquivo nao encontrado: DIFFERENCES_ANALYSIS.md
+2025-10-12 08:56:37,829 - WARNING - Arquivo nao encontrado: CORRECAO_MIGRACAO.md
+2025-10-12 08:56:37,829 - WARNING - Arquivo nao encontrado: MIGRATION_STATUS.md
+2025-10-12 08:56:37,830 - WARNING - Arquivo nao encontrado: EAP.md
+2025-10-12 08:56:37,831 - WARNING - Arquivo nao encontrado: EAP_GUARDFLOW.md
+2025-10-12 08:56:37,832 - WARNING - Arquivo nao encontrado: ECOSYSTEM_ARCHITECTURE.md
+2025-10-12 08:56:37,834 - WARNING - Arquivo nao encontrado: ECOSYSTEM_DEGOV_ARCHITECTURE_DIAGRAMS.md
+2025-10-12 08:56:37,835 - WARNING - Arquivo nao encontrado: ECOSYSTEM_MAP.md
+2025-10-12 08:56:37,836 - WARNING - Arquivo nao encontrado: ECOSYSTEM_DEGOV_EXECUTIVE_SUMMARY.md
+2025-10-12 08:56:37,836 - WARNING - Arquivo nao encontrado: ECOSYSTEM_DEGOV_WHITEPAPER.md
+2025-10-12 08:56:37,836 - WARNING - Arquivo nao encontrado: GUARDFLOW_CONNECTION.md
+2025-10-12 08:56:37,836 - WARNING - Arquivo nao encontrado: GUARDFLOW_INTEGRATION.md
+2025-10-12 08:56:37,837 - WARNING - Arquivo nao encontrado: GST_UPDATE.md
+2025-10-12 08:56:37,837 - WARNING - Arquivo nao encontrado: ENTERPRISE_ORGANIZATION_STATUS.md
+2025-10-12 08:56:37,838 - WARNING - Arquivo nao encontrado: test_backend.ps1
+2025-10-12 08:56:37,838 - WARNING - Arquivo nao encontrado: test_curl.bat
+2025-10-12 08:56:37,838 - WARNING - Arquivo nao encontrado: test_ecotoken_ecosystem.bat
+2025-10-12 08:56:37,839 - WARNING - Arquivo nao encontrado: test_gst_endpoints.bat
+2025-10-12 08:56:37,839 - WARNING - Arquivo nao encontrado: test_mobility_integration.bat
+2025-10-12 08:56:37,839 - WARNING - Arquivo nao encontrado: test_simple.bat
+2025-10-12 08:56:37,840 - WARNING - Arquivo nao encontrado: test_simple.ps1
+2025-10-12 08:56:37,840 - WARNING - Arquivo nao encontrado: create_docs.py
+2025-10-12 08:56:37,841 - WARNING - Arquivo nao encontrado: README_OLD.md
+2025-10-12 08:56:37,841 - WARNING - Arquivo nao encontrado: REPOSITORY_DESCRIPTION.md
+2025-10-12 08:56:37,850 - INFO - Movido arquivo restante: adaptive_docsync.log -> docs\development\adaptive_docsync.log
+2025-10-12 08:56:37,860 - INFO - Movido arquivo restante: adaptive_docsync.py -> docs\development\adaptive_docsync.py
+2025-10-12 08:56:37,872 - INFO - Movido arquivo restante: ADAPTIVE_DOCSYNC_FINAL_SUMMARY.md -> docs\development\ADAPTIVE_DOCSYNC_FINAL_SUMMARY.md
+2025-10-12 08:56:37,879 - INFO - Movido arquivo restante: ADAPTIVE_DOCSYNC_GUIDE.md -> docs\development\ADAPTIVE_DOCSYNC_GUIDE.md
+2025-10-12 08:56:37,888 - INFO - Movido arquivo restante: ADAPTIVE_DOCSYNC_IMPLEMENTATION_SUMMARY.md -> docs\development\ADAPTIVE_DOCSYNC_IMPLEMENTATION_SUMMARY.md
+2025-10-12 08:56:37,891 - INFO - Movido arquivo restante: ADAPTIVE_DOCSYNC_README.md -> docs\development\ADAPTIVE_DOCSYNC_README.md
+2025-10-12 08:56:37,897 - INFO - Movido arquivo restante: adaptive_docsync_report.json -> docs\development\adaptive_docsync_report.json
+2025-10-12 08:56:37,902 - INFO - Movido arquivo restante: adaptive_docsync_simple.py -> docs\development\adaptive_docsync_simple.py
+2025-10-12 08:56:37,907 - INFO - Movido arquivo restante: adaptive_structure.log -> docs\development\adaptive_structure.log
+2025-10-12 08:56:37,917 - INFO - Movido arquivo restante: adaptive_structure.py -> docs\development\adaptive_structure.py
+2025-10-12 08:56:37,919 - INFO - Movido arquivo restante: auto_organization.log -> docs\development\auto_organization.log
+2025-10-12 08:56:37,924 - INFO - Movido arquivo restante: auto_organization.py -> docs\development\auto_organization.py
+2025-10-12 08:56:37,930 - INFO - Movido arquivo restante: continuous_learning.log -> docs\development\continuous_learning.log
+2025-10-12 08:56:37,935 - INFO - Movido arquivo restante: continuous_learning.py -> docs\development\continuous_learning.py
+2025-10-12 08:56:37,943 - INFO - Movido arquivo restante: enterprise_docsync.log -> docs\development\enterprise_docsync.log
+2025-10-12 08:56:37,948 - INFO - Movido arquivo restante: enterprise_docsync.py -> docs\development\enterprise_docsync.py
+2025-10-12 08:56:37,954 - INFO - Movido arquivo restante: enterprise_structure_manager.py -> docs\development\enterprise_structure_manager.py
+2025-10-12 08:56:37,956 - INFO - Movido arquivo restante: esg-token-adaptive-docsync.yaml -> docs\development\esg-token-adaptive-docsync.yaml
+2025-10-12 08:56:37,962 - INFO - Movido arquivo restante: esg-token-docsync-simple.yaml -> docs\development\esg-token-docsync-simple.yaml
+2025-10-12 08:56:37,973 - INFO - Movido arquivo restante: esg-token-docsync.yaml -> docs\development\esg-token-docsync.yaml
+2025-10-12 08:56:37,976 - INFO - Movido arquivo restante: esg-token-docsync.yaml.example -> docs\development\esg-token-docsync.yaml.example
+2025-10-12 08:56:37,980 - INFO - Movido arquivo restante: INSTALLATION_GUIDE.md -> docs\development\INSTALLATION_GUIDE.md
+2025-10-12 08:56:38,045 - ERROR - Erro ao mover arquivo restante organize_root_files.log: [WinError 32] O arquivo já está sendo usado por outro processo: 'organize_root_files.log'
+2025-10-12 08:56:38,048 - INFO - Movido arquivo restante: organize_root_files.py -> docs\development\organize_root_files.py
+2025-10-12 08:56:38,054 - INFO - Movido arquivo restante: README.metadata.json -> docs\development\README.metadata.json
+2025-10-12 08:56:38,059 - INFO - Movido arquivo restante: README.metadata.metadata.json -> docs\development\README.metadata.metadata.json
+2025-10-12 08:56:38,063 - INFO - Movido arquivo restante: run_adaptive_docsync.ps1 -> docs\development\run_adaptive_docsync.ps1
+2025-10-12 08:56:38,067 - INFO - Relatorio de organizacao criado: ROOT_FILES_ORGANIZATION_REPORT.md
+2025-10-12 08:56:38,067 - INFO - Organizacao de arquivos da raiz concluida com sucesso!

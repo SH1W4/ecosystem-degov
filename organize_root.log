@@ -1,0 +1,37 @@
+2025-10-12 08:56:57,146 - INFO - Iniciando organizacao de arquivos da raiz...
+2025-10-12 08:56:57,153 - INFO - Criado diretorio: docs/development
+2025-10-12 08:56:57,157 - INFO - Criado diretorio: docs/architecture
+2025-10-12 08:56:57,161 - INFO - Criado diretorio: docs/whitepaper
+2025-10-12 08:56:57,163 - INFO - Criado diretorio: docs/integration
+2025-10-12 08:56:57,167 - INFO - Criado diretorio: docs/esg
+2025-10-12 08:56:57,176 - INFO - Criado diretorio: tests/integration
+2025-10-12 08:56:57,190 - INFO - Criado diretorio: tests/unit
+2025-10-12 08:56:57,195 - INFO - Iniciando organizacao de arquivos da raiz...
+2025-10-12 08:56:57,253 - INFO - Movido: DESENVOLVIMENTO.md -> docs\development\DESENVOLVIMENTO.md
+2025-10-12 08:56:57,263 - INFO - Movido: CONSOLIDATION_PLAN.md -> docs\development\CONSOLIDATION_PLAN.md
+2025-10-12 08:56:57,279 - INFO - Movido: CONSOLIDATION_STATUS.md -> docs\development\CONSOLIDATION_STATUS.md
+2025-10-12 08:56:57,286 - INFO - Movido: DIFFERENCES_ANALYSIS.md -> docs\development\DIFFERENCES_ANALYSIS.md
+2025-10-12 08:56:57,291 - INFO - Movido: CORRECAO_MIGRACAO.md -> docs\development\CORRECAO_MIGRACAO.md
+2025-10-12 08:56:57,299 - INFO - Movido: MIGRATION_STATUS.md -> docs\development\MIGRATION_STATUS.md
+2025-10-12 08:56:57,304 - INFO - Movido: EAP.md -> docs\architecture\EAP.md
+2025-10-12 08:56:57,310 - INFO - Movido: EAP_GUARDFLOW.md -> docs\architecture\EAP_GUARDFLOW.md
+2025-10-12 08:56:57,320 - INFO - Movido: ECOSYSTEM_ARCHITECTURE.md -> docs\architecture\ECOSYSTEM_ARCHITECTURE.md
+2025-10-12 08:56:57,324 - INFO - Movido: ECOSYSTEM_DEGOV_ARCHITECTURE_DIAGRAMS.md -> docs\architecture\ECOSYSTEM_DEGOV_ARCHITECTURE_DIAGRAMS.md
+2025-10-12 08:56:57,327 - INFO - Movido: ECOSYSTEM_MAP.md -> docs\architecture\ECOSYSTEM_MAP.md
+2025-10-12 08:56:57,334 - INFO - Movido: ECOSYSTEM_DEGOV_EXECUTIVE_SUMMARY.md -> docs\whitepaper\ECOSYSTEM_DEGOV_EXECUTIVE_SUMMARY.md
+2025-10-12 08:56:57,340 - INFO - Movido: ECOSYSTEM_DEGOV_WHITEPAPER.md -> docs\whitepaper\ECOSYSTEM_DEGOV_WHITEPAPER.md
+2025-10-12 08:56:57,344 - INFO - Movido: GUARDFLOW_CONNECTION.md -> docs\integration\GUARDFLOW_CONNECTION.md
+2025-10-12 08:56:57,348 - INFO - Movido: GUARDFLOW_INTEGRATION.md -> docs\integration\GUARDFLOW_INTEGRATION.md
+2025-10-12 08:56:57,353 - INFO - Movido: GST_UPDATE.md -> docs\esg\GST_UPDATE.md
+2025-10-12 08:56:57,358 - INFO - Movido: ENTERPRISE_ORGANIZATION_STATUS.md -> docs\development\ENTERPRISE_ORGANIZATION_STATUS.md
+2025-10-12 08:56:57,365 - INFO - Movido: test_backend.ps1 -> tests\test_backend.ps1
+2025-10-12 08:56:57,370 - INFO - Movido: test_curl.bat -> tests\integration\test_curl.bat
+2025-10-12 08:56:57,373 - INFO - Movido: test_ecotoken_ecosystem.bat -> tests\integration\test_ecotoken_ecosystem.bat
+2025-10-12 08:56:57,383 - INFO - Movido: test_gst_endpoints.bat -> tests\integration\test_gst_endpoints.bat
+2025-10-12 08:56:57,387 - INFO - Movido: test_mobility_integration.bat -> tests\integration\test_mobility_integration.bat
+2025-10-12 08:56:57,391 - INFO - Movido: test_simple.bat -> tests\unit\test_simple.bat
+2025-10-12 08:56:57,396 - INFO - Movido: test_simple.ps1 -> tests\unit\test_simple.ps1
+2025-10-12 08:56:57,399 - INFO - Movido: create_docs.py -> docs\development\create_docs.py
+2025-10-12 08:56:57,403 - INFO - Movido: README_OLD.md -> docs\development\README_OLD.md
+2025-10-12 08:56:57,410 - INFO - Movido: REPOSITORY_DESCRIPTION.md -> docs\development\REPOSITORY_DESCRIPTION.md
+2025-10-12 08:56:57,410 - INFO - Organizacao de arquivos da raiz concluida com sucesso!
