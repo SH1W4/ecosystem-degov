@@ -1,0 +1,35 @@
+{
+    "name": "trinity-architecture",
+    "version": "1.0.0",
+    "description": "Trinity Architecture - Unindo Satoshi + Vitalik + Our Vision = VANGUARDA",
+    "main": "index.js",
+    "scripts": {
+        "compile": "hardhat compile",
+        "test": "hardhat test",
+        "deploy": "hardhat run scripts/deploy-trinity.js --network localhost",
+        "deploy:goerli": "hardhat run scripts/deploy-trinity.js --network goerli",
+        "deploy:sepolia": "hardhat run scripts/deploy-trinity.js --network sepolia",
+        "node": "hardhat node",
+        "clean": "hardhat clean"
+    },
+    "keywords": [
+        "blockchain",
+        "esg",
+        "ai-ethics",
+        "sustainability",
+        "trinity-architecture",
+        "satoshi",
+        "vitalik",
+        "vanguarda"
+    ],
+    "author": "Trinity Architecture Team",
+    "license": "MIT",
+    "devDependencies": {
+        "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+        "@openzeppelin/contracts": "^4.9.6",
+        "hardhat": "^2.19.0"
+    },
+    "dependencies": {
+        "ethers": "^6.8.0"
+    }
+}

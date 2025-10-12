@@ -535,6 +535,47 @@
       "artifacts": [
         "ECTToken"
       ]
+    },
+    "C:\\Users\\João\\Desktop\\PROJETOS\\02_ORGANIZATIONS\\ecosystem-degov\\contracts\\trinity\\TrinityGSTToken.sol": {
+      "lastModificationDate": 1760287928113,
+      "contentHash": "53ce98ce2f97a344724f85018af24c45",
+      "sourceName": "contracts/trinity/TrinityGSTToken.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/security/ReentrancyGuard.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "TrinityGSTToken"
+      ]
     }
   }
 }
