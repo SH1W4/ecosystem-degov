@@ -1,0 +1,74 @@
+# Dependencies
+node_modules/
+target/
+.cargo/
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Build artifacts
+artifacts/
+cache/
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Deployment info (sensitive)
+deployments/*/private-keys/
+deployments/*/secrets/
+
+# Test coverage
+coverage/
+*.lcov
+
+# Rust
+Cargo.lock
+target/
+
+# Hardhat
+artifacts/
+cache/
+typechain/
+typechain-types/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.backup
+*.old
