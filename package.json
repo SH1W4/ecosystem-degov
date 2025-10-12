@@ -1,0 +1,43 @@
+{
+  "name": "esg-token-ecosystem",
+  "version": "1.0.0",
+  "description": "ESG Token Ecosystem - 7 Interconnected Tokens for Sustainability",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.js",
+    "deploy:testnet": "hardhat run scripts/deploy.js --network goerli",
+    "deploy:mainnet": "hardhat run scripts/deploy.js --network mainnet",
+    "verify": "hardhat run scripts/verify.js",
+    "test": "hardhat run scripts/test.js",
+    "test:unit": "hardhat test",
+    "coverage": "hardhat coverage",
+    "clean": "hardhat clean",
+    "node": "hardhat node",
+    "console": "hardhat console"
+  },
+  "keywords": [
+    "esg",
+    "sustainability",
+    "blockchain",
+    "tokens",
+    "defi",
+    "carbon-credits",
+    "green-finance"
+  ],
+  "author": "ESG Token Ecosystem",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@openzeppelin/contracts": "^4.9.6",
+    "hardhat": "^2.26.3",
+    "hardhat-gas-reporter": "^1.0.9",
+    "solidity-coverage": "^0.8.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

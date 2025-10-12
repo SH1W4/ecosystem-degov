@@ -1,0 +1,16 @@
+{
+  "network": {
+    "name": "localhost",
+    "chainId": "1337"
+  },
+  "deployer": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+  "timestamp": "2025-10-12T12:59:58.010Z",
+  "contracts": {
+    "GSTToken": {
+      "name": "Green Sustainability Token",
+      "symbol": "GST",
+      "supply": "1,000,000,000 GST",
+      "role": "Token Principal"
+    }
+  }
+}

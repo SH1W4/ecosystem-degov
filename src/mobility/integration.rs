@@ -38,8 +38,8 @@ impl ESGIntegrationService {
             esg_score: self.calculate_esg_score(&unified_balance).await?,
             sustainability_level: self.determine_sustainability_level(&unified_balance).await?,
             // Distribuições
-            platform_distribution: unified_balance.platform_distribution,
-            functionality_distribution: unified_balance.functionality_distribution,
+            platform_distribution: unified_balance.platform_distribution.clone(),
+            functionality_distribution: unified_balance.functionality_distribution.clone(),
             // Rewards
             unified_reward: unified_reward,
             // Métricas

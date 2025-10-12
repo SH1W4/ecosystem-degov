@@ -1,5 +1,7 @@
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
+use crate::mobility::integration::UnifiedESGProfile;
+use crate::mobility::cross_platform::CrossPlatformService;
 
 pub mod telemetry;
 pub mod vehicle;
@@ -41,16 +43,7 @@ pub struct CrossPlatformTransfer {
     pub timestamp: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]                                         
-pub struct UnifiedESGProfile {
-    pub user_id: String,
-    pub mobility_score: f64,
-    pub sustainability_score: f64,
-    pub total_esg_tokens: u64,
-    pub cross_platform_multiplier: f64,     
-    pub sustainability_level: String,
-    pub achievements: Vec<String>,
-}
+// UnifiedESGProfile moved to integration.rs
 
 pub struct MobilityService {
     // Placeholder for Mobility API connection                                        
@@ -87,18 +80,8 @@ impl MobilityService {
     }
 
     pub async fn get_unified_profile(&self, user_id: &str) -> Result<UnifiedESGProfile> {                                           
-        Ok(UnifiedESGProfile {
-            user_id: user_id.to_string(),   
-            mobility_score: 85.5,
-            sustainability_score: 78.2,
-            total_esg_tokens: 2500,
-            cross_platform_multiplier: 1.5, 
-            sustainability_level: "Platinum".to_string(),                               
-            achievements: vec![
-                "Eco Driver".to_string(),   
-                "Green Shopper".to_string(),
-                "Sustainability Champion".to_string(),                                  
-            ],
-        })
+        // Use the integration service to get the unified profile
+        let integration_service = crate::mobility::integration::ESGIntegrationService::new().await?;
+        integration_service.get_unified_esg_profile(user_id).await
     }
 }

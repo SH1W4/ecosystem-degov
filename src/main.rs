@@ -382,11 +382,7 @@ async fn convert_nfe_to_nft(Json(payload): Json<HashMap<String, String>>) -> Res
         Ok(Json(response))
     }
 
-async fn get_unified_esg_profile(Path(user_id): Path<String>) -> Result<Json<UnifiedESGProfile>, StatusCode> {
-    let mobility_service = MobilityService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-    let profile = mobility_service.get_unified_profile(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
-    Ok(Json(profile))
-}
+// Removed duplicate function - using the one in ESG Integration Handlers section
 
 // EcoToken (ECT) endpoints
 async fn get_ecotoken_info() -> Result<Json<EcoToken>, StatusCode> {
