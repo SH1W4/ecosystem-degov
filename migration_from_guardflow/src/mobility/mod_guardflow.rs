@@ -4,8 +4,6 @@ use serde::{Deserialize, Serialize};
 pub mod telemetry;
 pub mod vehicle;
 pub mod cross_platform;
-pub mod bridge;
-pub mod integration;
 
 // Mobility Integration Data Structures   
 #[derive(Debug, Clone, Serialize, Deserialize)]                                         

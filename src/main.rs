@@ -15,6 +15,7 @@ mod ecotoken;
 use gst::*;
 use mobility::*;
 use mobility::cross_platform::{CrossPlatformBalance, CrossPlatformService};
+use mobility::integration::{ESGIntegrationService, UnifiedESGProfile};
 use ecotoken::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -737,6 +738,39 @@ async fn get_ecosystem_stats() -> Result<Json<HashMap<String, u64>>, StatusCode>
     Ok(Json(stats))
 }
 
+// ESG Integration Handlers
+async fn get_unified_esg_profile(Path(user_id): Path<String>) -> Result<Json<UnifiedESGProfile>, StatusCode> {
+    let service = ESGIntegrationService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let profile = service.get_unified_esg_profile(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(profile))
+}
+
+async fn transfer_unified_tokens(
+    Json(payload): Json<serde_json::Value>
+) -> Result<Json<serde_json::Value>, StatusCode> {
+    let service = ESGIntegrationService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    
+    let from_platform = payload["from_platform"].as_str().unwrap_or("guardrive");
+    let to_platform = payload["to_platform"].as_str().unwrap_or("guardflow");
+    let amount = payload["amount"].as_u64().unwrap_or(100);
+    
+    let result = service.transfer_unified_tokens(from_platform, to_platform, amount).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    
+    Ok(Json(serde_json::json!({
+        "success": true,
+        "final_amount": result,
+        "from_platform": from_platform,
+        "to_platform": to_platform,
+        "original_amount": amount
+    })))
+}
+
+async fn get_platform_metrics(Path(user_id): Path<String>) -> Result<Json<HashMap<String, f64>>, StatusCode> {
+    let service = ESGIntegrationService::new().await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    let metrics = service.get_platform_metrics(&user_id).await.map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    Ok(Json(metrics))
+}
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Initialize logging
@@ -851,7 +885,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             // EcoToken Ecosystem endpoints
             .route("/api/v1/ecosystem/balance/:user_id", get(get_unified_ecosystem_balance))
             .route("/api/v1/ecosystem/transfer", post(transfer_cross_ecosystem))
-            .route("/api/v1/ecosystem/stats", get(get_ecosystem_stats));
+            .route("/api/v1/ecosystem/stats", get(get_ecosystem_stats))
+            
+            // ESG Integration endpoints
+            .route("/api/v1/esg/unified-profile/:user_id", get(get_unified_esg_profile))
+            .route("/api/v1/esg/transfer-unified", post(transfer_unified_tokens))
+            .route("/api/v1/esg/platform-metrics/:user_id", get(get_platform_metrics));
 
     // Start the server
     let listener = TcpListener::bind("127.0.0.1:3000").await?;
