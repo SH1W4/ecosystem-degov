@@ -174,11 +174,11 @@ graph TB
 - **Supply**: Limitado e raro
 - **Use Cases**: NFTs, Collectibles, Rewards
 
-### **7. GST (GuardFlow Sustainability Token) - Token de Sustentabilidade**
-- **Propósito**: Token de sustentabilidade e gamificação
+### **7. GST (Green Sustainability Token) - Token de Sustentabilidade Verde**
+- **Propósito**: Token de sustentabilidade verde e gamificação
 - **Blockchain**: Ethereum
 - **Supply**: 1,000,000,000 GST
-- **Use Cases**: Gamificação, Marketplace, Governança, NFE/NFT
+- **Use Cases**: Gamificação, Marketplace, Governança, NFE/NFT, Sustentabilidade Verde
 
 ---
 
