@@ -10,6 +10,12 @@
 - **Rede**: Localhost (Hardhat)
 - **Status**: ✅ **100% FUNCIONAL**
 
+#### **🤖 IA ÉTICA INTEGRADA**
+- **Sistema de scoring ético** (0-1000)
+- **Green AI incentives** para sustentabilidade
+- **Transparency & bias detection** automática
+- **Human-aligned AI rewards** em GST
+
 #### **🔧 FUNCIONALIDADES TESTADAS**
 - ✅ **Sistema de staking** (15% APY + bônus sustentabilidade)
 - ✅ **Sistema de sustentabilidade** (0-1000 score)

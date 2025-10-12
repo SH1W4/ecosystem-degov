@@ -6,6 +6,9 @@
 - **Smart Contract GST** funcionando na blockchain
 - **Sistema de staking** com recompensas de 15% APY
 - **Sistema de sustentabilidade** gamificado (0-1000 score)
+- **IA Ética integrada** ao ecossistema ESG
+- **Sistema de scoring ético** (0-1000)
+- **Green AI incentives** para sustentabilidade
 - **Documentação completa** criada
 - **Arquitetura** mapeada e documentada
 - **Modelo de negócio** definido
@@ -44,10 +47,17 @@ npx hardhat verify --network goerli <CONTRACT_ADDRESS>
 - Smart cart ESG scoring
 - Sistema de recompensas
 
-### **4. 📱 FRONTEND MVP**
+### **4. 🤖 IA ÉTICA IMPLEMENTATION**
+- Sistema de scoring ético
+- Green AI tracking
+- Transparency & bias detection
+- Human-aligned AI rewards
+
+### **5. 📱 FRONTEND MVP**
 - Dashboard de usuário
 - Staking interface
 - Rewards tracking
+- AI Ethics dashboard
 
 ---
 

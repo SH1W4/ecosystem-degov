@@ -3,7 +3,7 @@
 ## 📊 **VISÃO GERAL DO ECOSSISTEMA CRIADO**
 
 ### **🎯 MISSÃO**
-Criar um ecossistema de tokens ESG (Environmental, Social, Governance) integrado a projetos de mobilidade e varejo, incentivando sustentabilidade através de gamificação e recompensas.
+Criar um ecossistema de tokens ESG (Environmental, Social, Governance) integrado a projetos de mobilidade, varejo e **Inteligência Artificial Ética**, incentivando sustentabilidade através de gamificação e recompensas.
 
 ### **🏗️ ARQUITETURA DO ECOSSISTEMA**
 
@@ -28,8 +28,42 @@ Criar um ecossistema de tokens ESG (Environmental, Social, Governance) integrado
 │  ├── NFE to NFT Conversion                                  │
 │  ├── Smart Cart Integration                                 │
 │  └── ESG Rewards System                                     │
+├─────────────────────────────────────────────────────────────┤
+│  🤖 AI ETHICS INTEGRATION                                   │
+│  ├── Ethical AI Scoring (0-1000)                           │
+│  ├── Green AI Practices                                     │
+│  ├── Transparency & Bias Detection                          │
+│  └── Human-Aligned AI Rewards                               │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🤖 **INTEGRAÇÃO IA ÉTICA**
+
+### **📊 SISTEMA DE SCORING ÉTICO**
+- **Transparência** (25% do score): Explicabilidade dos algoritmos
+- **Detecção de Vieses** (25% do score): Identificação e mitigação de vieses
+- **Alinhamento Humano** (25% do score): Valores e segurança humana
+- **Impacto Ambiental** (25% do score): Eficiência energética e sustentabilidade
+
+### **🌱 GREEN AI INCENTIVES**
+- **Eficiência Energética**: Recompensas por menor consumo
+- **Carbon Footprint**: Tracking e redução de emissões
+- **Energia Renovável**: Incentivos para energia limpa
+- **Computação Sustentável**: Hardware e software eficientes
+
+### **🔍 TRANSPARENCY & BIAS**
+- **Explainability**: Algoritmos explicáveis
+- **Bias Detection**: Detecção automática de vieses
+- **Data Privacy**: Proteção de dados pessoais
+- **Human Oversight**: Controle humano sobre decisões
+
+### **🎮 GAMIFICAÇÃO IA ÉTICA**
+- **Achievements**: Conquistas por práticas éticas
+- **Challenges**: Desafios de sustentabilidade
+- **Rewards**: Recompensas em GST por IA ética
+- **Certificates**: NFTs de conquistas éticas
 
 ---
 
