@@ -11,6 +11,7 @@ use trinity_mcp_server::TrinityMCPServer;
 
 mod trinity_ai_agent;
 mod trinity_mcp_server;
+mod trinity_neural_network;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

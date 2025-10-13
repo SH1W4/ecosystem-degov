@@ -28,6 +28,16 @@ env_logger = "0.10"
 # Async runtime
 tokio = { version = "1.0", features = ["full"] }
 
+# Neural Network Dependencies
+# Math and linear algebra
+nalgebra = "0.32"
+ndarray = "0.15"
+# Machine learning
+candle-core = "0.3"
+candle-nn = "0.3"
+# Optimization
+optimization = "0.1"
+
 # HTTP client
 reqwest = { version = "0.11", features = ["json"] }
 

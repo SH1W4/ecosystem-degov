@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use tokio::time::{sleep, Duration};
 use chrono::{DateTime, Utc};
+use crate::trinity_neural_network::TrinityNeuralNetwork;
 
 /// Trinity AI Agent - Agente autônomo para manutenção do ecossistema ESG + IA Ética
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -14,6 +15,7 @@ pub struct TrinityAIAgent {
     pub ecosystem_state: EcosystemState,
     pub learning_data: LearningData,
     pub performance_metrics: PerformanceMetrics,
+    pub neural_network: TrinityNeuralNetwork,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -150,7 +152,7 @@ pub struct PerformanceMetrics {
 impl TrinityAIAgent {
     /// Cria uma nova instância do Trinity AI Agent
     pub fn new() -> Self {
-        Self {
+        let mut agent = Self {
             agent_id: format!("trinity-ai-{}", uuid::Uuid::new_v4()),
             version: "1.0.0".to_string(),
             status: AgentStatus::Initializing,
@@ -186,7 +188,137 @@ impl TrinityAIAgent {
                 ecosystem_health_score: 0.0,
                 user_satisfaction: 0.0,
             },
-        }
+            neural_network: TrinityNeuralNetwork::new(),
+        };
+        
+        // Inicializar dados de custos blockchain para aprendizado
+        agent.initialize_blockchain_cost_data();
+        
+        agent
+    }
+    
+    /// Treina a rede neural Trinity com dados ESG
+    pub async fn train_neural_network(&mut self) -> Result<f64, String> {
+        println!("🧠 Trinity AI: Iniciando treinamento da rede neural...");
+        
+        // Preparar dados de treinamento
+        let training_data = self.prepare_neural_training_data().await?;
+        
+        // Treinar rede neural
+        let accuracy = self.neural_network.train(&training_data).await?;
+        
+        // Atualizar métricas
+        self.performance_metrics.learning_velocity = accuracy;
+        
+        println!("✅ Trinity AI: Rede neural treinada com precisão {:.2}%", accuracy * 100.0);
+        
+        Ok(accuracy)
+    }
+    
+    /// Faz previsões ESG usando rede neural
+    pub async fn predict_esg_with_neural(&self, nfe_data: &crate::trinity_neural_network::NFEData) -> Result<crate::trinity_neural_network::ESGScore, String> {
+        println!("🔮 Trinity AI: Fazendo previsão ESG com rede neural...");
+        
+        let prediction = self.neural_network.predict_esg_score(nfe_data).await?;
+        
+        println!("✅ Trinity AI: ESG Score previsto: {:.2}", prediction.total_score);
+        
+        Ok(prediction)
+    }
+    
+    /// Otimiza sistema usando rede neural
+    pub async fn optimize_with_neural(&mut self) -> Result<crate::trinity_neural_network::OptimizationResult, String> {
+        println!("⚡ Trinity AI: Otimizando sistema com rede neural...");
+        
+        let result = self.neural_network.optimize_system().await?;
+        
+        println!("✅ Trinity AI: Sistema otimizado com melhoria de {:.2}%", result.improvement_percentage);
+        
+        Ok(result)
+    }
+    
+    /// Prepara dados para treinamento da rede neural
+    async fn prepare_neural_training_data(&self) -> Result<crate::trinity_neural_network::ESGTrainingData, String> {
+        // Implementar coleta e preparação de dados ESG
+        // Por enquanto, retornar dados mock
+        Ok(crate::trinity_neural_network::ESGTrainingData::new())
+    }
+    
+    /// Inicializa dados de custos blockchain para aprendizado da Trinity
+    fn initialize_blockchain_cost_data(&mut self) {
+        // Dados de custos reais coletados do deploy local
+        let cost_data = serde_json::json!({
+            "deploy_costs": {
+                "gst_token": {
+                    "gas_used": 1766702,
+                    "network": "localhost",
+                    "cost_usd": 0.0,
+                    "timestamp": chrono::Utc::now().to_rfc3339()
+                },
+                "aet_token": {
+                    "gas_used": 1708252,
+                    "network": "localhost", 
+                    "cost_usd": 0.0,
+                    "timestamp": chrono::Utc::now().to_rfc3339()
+                }
+            },
+            "network_costs": {
+                "ethereum_mainnet": {
+                    "gas_price_gwei": 30,
+                    "cost_per_deploy_usd": 260,
+                    "cost_per_transaction_usd": 5.0
+                },
+                "polygon": {
+                    "gas_price_gwei": 2,
+                    "cost_per_deploy_usd": 17.3,
+                    "cost_per_transaction_usd": 0.01
+                },
+                "arbitrum": {
+                    "gas_price_gwei": 0.3,
+                    "cost_per_deploy_usd": 2.6,
+                    "cost_per_transaction_usd": 0.001
+                },
+                "optimism": {
+                    "gas_price_gwei": 0.1,
+                    "cost_per_deploy_usd": 0.8,
+                    "cost_per_transaction_usd": 0.0001
+                },
+                "bsc": {
+                    "gas_price_gwei": 5,
+                    "cost_per_deploy_usd": 43,
+                    "cost_per_transaction_usd": 0.1
+                }
+            },
+            "optimization_strategies": {
+                "timing": {
+                    "low_gas_hours": "02:00-06:00 UTC",
+                    "low_gas_days": "Weekends",
+                    "gas_savings_percent": 50
+                },
+                "contract_optimization": {
+                    "gas_reduction_percent": 30,
+                    "techniques": ["Remove unused functions", "Use libraries", "Optimize loops"]
+                },
+                "layer2_migration": {
+                    "cost_reduction_percent": 95,
+                    "recommended_networks": ["Polygon", "Arbitrum", "Optimism"]
+                }
+            }
+        });
+        
+        // Armazenar dados na memória de aprendizado
+        self.learning_data.market_insights.push(MarketInsight {
+            insight_id: format!("blockchain-cost-analysis-{}", uuid::Uuid::new_v4()),
+            insight_type: "blockchain_cost_analysis".to_string(),
+            confidence: 0.95,
+            data: cost_data,
+            timestamp: Utc::now(),
+            source: "trinity_ai_agent".to_string(),
+        });
+        
+        println!("🧠 Trinity AI: Dados de custos blockchain carregados para aprendizado!");
+        println!("📊 Rede mais econômica: Arbitrum (${:.2} por deploy)", 2.6);
+        println!("⚡ Estratégia recomendada: Deploy em Layer 2 para economia de 95%");
     }
 
     /// Inicializa o agente

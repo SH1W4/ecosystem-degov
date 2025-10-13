@@ -1,0 +1,3 @@
+exit
+cargo build --bin trinity_ai_agent
+npx hardhat run scripts/deploy-nfe-nft.js --network localhost
