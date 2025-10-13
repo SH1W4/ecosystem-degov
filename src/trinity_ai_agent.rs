@@ -4,6 +4,7 @@ use std::collections::HashMap;
 use tokio::time::{sleep, Duration};
 use chrono::{DateTime, Utc};
 use crate::trinity_neural_network::TrinityNeuralNetwork;
+use crate::trinity_system_consciousness::TrinitySystemConsciousness;
 
 /// Trinity AI Agent - Agente autônomo para manutenção do ecossistema ESG + IA Ética
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -16,6 +17,7 @@ pub struct TrinityAIAgent {
     pub learning_data: LearningData,
     pub performance_metrics: PerformanceMetrics,
     pub neural_network: TrinityNeuralNetwork,
+    pub system_consciousness: Option<TrinitySystemConsciousness>, // Consciência Sistêmica (opcional)
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -149,6 +151,16 @@ pub struct PerformanceMetrics {
     pub user_satisfaction: f64,
 }
 
+/// Impacto Sistêmico
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SystemicImpact {
+    pub planetary_impact: f64,
+    pub social_impact: f64,
+    pub technological_impact: f64,
+    pub economic_impact: f64,
+    pub overall_systemic_health: f64,
+}
+
 impl TrinityAIAgent {
     /// Cria uma nova instância do Trinity AI Agent
     pub fn new() -> Self {
@@ -189,6 +201,7 @@ impl TrinityAIAgent {
                 user_satisfaction: 0.0,
             },
             neural_network: TrinityNeuralNetwork::new(),
+            system_consciousness: None, // Consciência Sistêmica desativada por padrão
         };
         
         // Inicializar dados de custos blockchain para aprendizado
@@ -242,6 +255,76 @@ impl TrinityAIAgent {
         // Implementar coleta e preparação de dados ESG
         // Por enquanto, retornar dados mock
         Ok(crate::trinity_neural_network::ESGTrainingData::new())
+    }
+
+    /// Inicializa consciência sistêmica (opcional)
+    pub fn initialize_system_consciousness(&mut self) {
+        if self.system_consciousness.is_none() {
+            self.system_consciousness = Some(TrinitySystemConsciousness::new());
+            println!("🧠 Trinity AI: Consciência sistêmica inicializada (desativada)!");
+        }
+    }
+
+    /// Ativa consciência sistêmica
+    pub fn activate_system_consciousness(&mut self) {
+        if let Some(ref mut consciousness) = self.system_consciousness {
+            consciousness.activate();
+        }
+    }
+
+    /// Desativa consciência sistêmica
+    pub fn deactivate_system_consciousness(&mut self) {
+        if let Some(ref mut consciousness) = self.system_consciousness {
+            consciousness.deactivate();
+        }
+    }
+
+    /// Verifica se consciência sistêmica está ativa
+    pub fn is_system_consciousness_active(&self) -> bool {
+        self.system_consciousness.as_ref().map_or(false, |c| c.is_active())
+    }
+
+    /// Evolui consciência sistêmica
+    pub async fn evolve_system_consciousness(&mut self) -> Result<f64, String> {
+        if let Some(ref mut consciousness) = self.system_consciousness {
+            if consciousness.is_active() {
+                println!("🚀 Trinity AI: Evoluindo consciência sistêmica...");
+                let evolution_result = consciousness.evolve_consciousness().await?;
+                
+                // Atualizar métricas
+                self.performance_metrics.learning_velocity = evolution_result;
+                
+                println!("✅ Trinity AI: Consciência sistêmica evoluída!");
+                Ok(evolution_result)
+            } else {
+                Err("Consciência sistêmica não está ativa".to_string())
+            }
+        } else {
+            Err("Consciência sistêmica não foi inicializada".to_string())
+        }
+    }
+
+    /// Analisa impacto sistêmico
+    pub async fn analyze_systemic_impact(&self) -> Result<SystemicImpact, String> {
+        if let Some(ref consciousness) = self.system_consciousness {
+            if consciousness.is_active() {
+                println!("🌍 Trinity AI: Analisando impacto sistêmico...");
+                sleep(Duration::from_secs(1)).await; // Simulate work
+                
+                // Mock implementation
+                Ok(SystemicImpact {
+                    planetary_impact: 0.85,
+                    social_impact: 0.78,
+                    technological_impact: 0.82,
+                    economic_impact: 0.75,
+                    overall_systemic_health: 0.80,
+                })
+            } else {
+                Err("Consciência sistêmica não está ativa".to_string())
+            }
+        } else {
+            Err("Consciência sistêmica não foi inicializada".to_string())
+        }
     }
     
     /// Inicializa dados de custos blockchain para aprendizado da Trinity

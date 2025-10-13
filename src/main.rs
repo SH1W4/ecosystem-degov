@@ -12,6 +12,7 @@ use trinity_mcp_server::TrinityMCPServer;
 mod trinity_ai_agent;
 mod trinity_mcp_server;
 mod trinity_neural_network;
+mod trinity_system_consciousness; // Consciência Sistêmica
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
