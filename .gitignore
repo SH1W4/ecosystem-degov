@@ -67,3 +67,6 @@ perf.data*
 *.bak
 *.backup
 *.old
+
+# Shell junk artifacts
+hell -NoProfile -Command */
