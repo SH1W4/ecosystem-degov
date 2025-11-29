@@ -21,6 +21,55 @@
 
 ## 🚀 **What is Ecosystem Degov?**
 
+Ecosystem Degov is a **comprehensive blockchain-based ESG token ecosystem** that tokenizes environmental, social, and governance metrics to create sustainable economic incentives. Our ecosystem combines **8 interconnected tokens** with **AI-powered orchestration** to revolutionize how we measure, reward, and incentivize sustainable practices.
+
+### 🌟 **Core Vision**
+
+Transform sustainability from a cost center into a **profit center** by creating economic incentives for ESG practices through blockchain technology and AI orchestration.
+
+---
+
+## 🏗️ **Ecosystem Architecture**
+
+### 🪙 **8 Interconnected Tokens**
+
+<div align="center">
+
+| Icon | Token | Symbol | Purpose | Color |
+|------|-------|--------|---------|-------|
+| ![GST](docs/assets/tokens/gst_token_icon.png) | **Green Sustainability Token** | GST | Principal ecosystem token | 🟢 #00C853 |
+| ![AET](docs/assets/tokens/aet_token_icon.png) | **AI Ethics Token** | AET | Ethical AI incentives | 🟣 #7C4DFF |
+| ![ECT](docs/assets/tokens/ect_token_icon.png) | **EcoToken** | ECT | Environmental impact | 🔵 #00BFA5 |
+| ![ECS](docs/assets/tokens/ecs_token_icon.png) | **EcoScore** | ECS | ESG scoring system | 🔷 #2196F3 |
+| ![CCR](docs/assets/tokens/ccr_token_icon.png) | **Carbon Credit** | CCR | Carbon offset trading | ⚫ #607D8B |
+| ![ECR](docs/assets/tokens/ecr_token_icon.png) | **EcoCertificate** | ECR | Achievement certificates | 🟡 #FFB300 |
+| ![EST](docs/assets/tokens/est_token_icon.png) | **EcoStake** | EST | Staking rewards | 🔵 #00E5FF |
+| ![EGM](docs/assets/tokens/egm_token_icon.png) | **EcoGem** | EGM | Premium rewards | 🔴 #E91E63 |
+
+</div>
+
+### 🤖 **Trinity AI Agent: The Orchestrator**
+
+Our **autonomous AI agent** manages the complexity of the ecosystem:
+
+- **🧠 Intelligent Management**: 24/7 ecosystem monitoring and optimization
+- **📊 Real-time Analytics**: Continuous ESG metrics analysis
+- **⚡ Auto-optimization**: Dynamic token parameter adjustment
+- **🔧 Self-healing**: Automatic problem detection and resolution
+- **🌐 MCP Integration**: Connects with LLMs, IDEs, and external services
+
+**Trinity Architecture** - Three Pillars:
+1. **Satoshi Pillar**: Trust Score System & Security
+2. **Vitalik Pillar**: Composability & Cross-Chain
+3. **ESG Pillar**: Impact Scoring & Metrics
+
+> 📊 See detailed [Architecture Diagrams](docs/ARCHITECTURE_DIAGRAMS.md) for system visualization
+
+---
+
+## ✨ **Key Features**
+
+### 🌱 **ESG Tokenization**
 ```solidity
 // Example: GST Token with Trinity Architecture
 contract TrinityGSTToken is ERC20, Ownable, Pausable {
@@ -223,34 +272,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 **Acknowledgments**
 
-- **OpenZeppelin**: Secure smart contract standards
-- **Hardhat**: Ethereum development framework
-- **Rust Community**: High-performance backend
-- **ESG Pioneers**: Sustainability visionaries
-- **AI Researchers**: Ethical AI development
+Built with ❤️ for a sustainable future by the Ecosystem Degov team.
 
 ---
-
-## 📞 **Support & Community**
-
-- 📧 **Email**: contact@ecosystem-degov.com
-- 💬 **Discord**: [Join our community](https://discord.gg/ecosystem-degov)
-- 🐦 **Twitter**: [@EcosystemDegov](https://twitter.com/EcosystemDegov)
-- 📖 **Documentation**: [docs.ecosystem-degov.com](https://docs.ecosystem-degov.com)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/SH1W4/ecosystem-degov/issues)
-
----
-
-<div align="center">
 
 **🌱 Ecosystem Degov** - *Tokenizing Sustainability, Orchestrating Impact*
-
-[⭐ Star us on GitHub](https://github.com/SH1W4/ecosystem-degov) | [🐦 Follow us on Twitter](https://twitter.com/EcosystemDegov) | [📺 Subscribe on YouTube](https://youtube.com/ecosystem-degov)
-
-*Building a sustainable future through blockchain technology and AI orchestration*
-
----
-
-Made with 💚 by the Ecosystem Degov Team
-
-</div>
