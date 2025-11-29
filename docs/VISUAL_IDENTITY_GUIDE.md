@@ -73,16 +73,20 @@ This guide documents the visual identity system for Ecosystem Degov, including l
 - **Icon**: Certificate/medal with ribbon
 
 ### 7. EcoStake (EST)
+![EST Token](../docs/assets/tokens/est_token_icon.png)
+
 - **Symbol**: EST
 - **Color**: Bright Cyan (#00E5FF)
 - **Purpose**: Staking rewards
-- **Icon**: Diamond/crystal (to be generated)
+- **Icon**: Diamond/crystal with electric blue glow
 
 ### 8. EcoGem (EGM)
+![EGM Token](../docs/assets/tokens/egm_token_icon.png)
+
 - **Symbol**: EGM
 - **Color**: Magenta (#E91E63)
 - **Purpose**: Premium rewards
-- **Icon**: Brilliant gemstone (to be generated)
+- **Icon**: Brilliant gemstone with radiant shine
 
 ## 🎨 Color Palette
 

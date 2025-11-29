@@ -37,23 +37,6 @@ Transform sustainability from a cost center into a **profit center** by creating
 
 | Icon | Token | Symbol | Purpose | Color |
 |------|-------|--------|---------|-------|
-| ![GST](docs/assets/tokens/gst_token_icon.png) | **Green Sustainability Token** | GST | Principal ecosystem token | 🟢 #00C853 |
-| ![AET](docs/assets/tokens/aet_token_icon.png) | **AI Ethics Token** | AET | Ethical AI incentives | 🟣 #7C4DFF |
-| ![ECT](docs/assets/tokens/ect_token_icon.png) | **EcoToken** | ECT | Environmental impact | 🔵 #00BFA5 |
-| ![ECS](docs/assets/tokens/ecs_token_icon.png) | **EcoScore** | ECS | ESG scoring system | 🔷 #2196F3 |
-| ![CCR](docs/assets/tokens/ccr_token_icon.png) | **Carbon Credit** | CCR | Carbon offset trading | ⚫ #607D8B |
-| ![ECR](docs/assets/tokens/ecr_token_icon.png) | **EcoCertificate** | ECR | Achievement certificates | 🟡 #FFB300 |
-| **EcoStake** | EST | Staking rewards | 🔵 #00E5FF |
-| **EcoGem** | EGM | Premium rewards | 🔴 #E91E63 |
-
-</div>
-
-> **Note**: Token icons for EST and EGM will be added soon. See our [Visual Identity Guide](docs/VISUAL_IDENTITY_GUIDE.md) for complete branding assets.
-
-### 🤖 **Trinity AI Agent: The Orchestrator**
-
-Our **autonomous AI agent** manages the complexity of the ecosystem:
-
 - **🧠 Intelligent Management**: 24/7 ecosystem monitoring and optimization
 - **📊 Real-time Analytics**: Continuous ESG metrics analysis
 - **⚡ Auto-optimization**: Dynamic token parameter adjustment
