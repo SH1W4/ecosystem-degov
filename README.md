@@ -2,29 +2,6 @@
 
 <div align="center">
 
-![Ecosystem Degov Logo](docs/assets/logos/ecosystem_degov_logo.png)
-
-![Ecosystem Degov](https://img.shields.io/badge/Ecosystem-Degov-green?style=for-the-badge&logo=leaf)
-![ESG](https://img.shields.io/badge/ESG-Sustainability-blue?style=for-the-badge&logo=recycle)
-![Blockchain](https://img.shields.io/badge/Blockchain-Ethereum-orange?style=for-the-badge&logo=ethereum)
-![AI](https://img.shields.io/badge/AI-Orchestrated-purple?style=for-the-badge&logo=robot)
-
-**Revolutionary ESG Token Ecosystem with AI Orchestration**
-
-*Tokenizing sustainability, incentivizing impact, building the future*
-
-[📖 Documentation](docs/) | [🏗️ Architecture](docs/ARCHITECTURE_DIAGRAMS.md) | [🎨 Visual Identity](docs/VISUAL_IDENTITY_GUIDE.md)
-
-</div>
-
----
-
-## 🚀 **What is Ecosystem Degov?**
-
-Ecosystem Degov is a **comprehensive blockchain-based ESG token ecosystem** that tokenizes environmental, social, and governance metrics to create sustainable economic incentives. Our ecosystem combines **8 interconnected tokens** with **AI-powered orchestration** to revolutionize how we measure, reward, and incentivize sustainable practices.
-
-### 🌟 **Core Vision**
-
 Transform sustainability from a cost center into a **profit center** by creating economic incentives for ESG practices through blockchain technology and AI orchestration.
 
 ---
