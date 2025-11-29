@@ -43,12 +43,10 @@ Transform sustainability from a cost center into a **profit center** by creating
 | ![ECS](docs/assets/tokens/ecs_token_icon.png) | **EcoScore** | ECS | ESG scoring system | 🔷 #2196F3 |
 | ![CCR](docs/assets/tokens/ccr_token_icon.png) | **Carbon Credit** | CCR | Carbon offset trading | ⚫ #607D8B |
 | ![ECR](docs/assets/tokens/ecr_token_icon.png) | **EcoCertificate** | ECR | Achievement certificates | 🟡 #FFB300 |
-| **EcoStake** | EST | Staking rewards | 🔵 #00E5FF |
-| **EcoGem** | EGM | Premium rewards | 🔴 #E91E63 |
+| ![EST](docs/assets/tokens/est_token_icon.png) | **EcoStake** | EST | Staking rewards | 🔵 #00E5FF |
+| ![EGM](docs/assets/tokens/egm_token_icon.png) | **EcoGem** | EGM | Premium rewards | 🔴 #E91E63 |
 
 </div>
-
-> **Note**: Token icons for EST and EGM will be added soon. See our [Visual Identity Guide](docs/VISUAL_IDENTITY_GUIDE.md) for complete branding assets.
 
 ### 🤖 **Trinity AI Agent: The Orchestrator**
 
@@ -274,34 +272,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 **Acknowledgments**
 
-- **OpenZeppelin**: Secure smart contract standards
-- **Hardhat**: Ethereum development framework
-- **Rust Community**: High-performance backend
-- **ESG Pioneers**: Sustainability visionaries
-- **AI Researchers**: Ethical AI development
+Built with ❤️ for a sustainable future by the Ecosystem Degov team.
 
 ---
-
-## 📞 **Support & Community**
-
-- 📧 **Email**: contact@ecosystem-degov.com
-- 💬 **Discord**: [Join our community](https://discord.gg/ecosystem-degov)
-- 🐦 **Twitter**: [@EcosystemDegov](https://twitter.com/EcosystemDegov)
-- 📖 **Documentation**: [docs.ecosystem-degov.com](https://docs.ecosystem-degov.com)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/SH1W4/ecosystem-degov/issues)
-
----
-
-<div align="center">
 
 **🌱 Ecosystem Degov** - *Tokenizing Sustainability, Orchestrating Impact*
-
-[⭐ Star us on GitHub](https://github.com/SH1W4/ecosystem-degov) | [🐦 Follow us on Twitter](https://twitter.com/EcosystemDegov) | [📺 Subscribe on YouTube](https://youtube.com/ecosystem-degov)
-
-*Building a sustainable future through blockchain technology and AI orchestration*
-
----
-
-Made with 💚 by the Ecosystem Degov Team
-
-</div>
