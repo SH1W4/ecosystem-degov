@@ -2,6 +2,8 @@
 
 <div align="center">
 
+![Ecosystem Degov Logo](docs/assets/logos/ecosystem_degov_logo.png)
+
 ![Ecosystem Degov](https://img.shields.io/badge/Ecosystem-Degov-green?style=for-the-badge&logo=leaf)
 ![ESG](https://img.shields.io/badge/ESG-Sustainability-blue?style=for-the-badge&logo=recycle)
 ![Blockchain](https://img.shields.io/badge/Blockchain-Ethereum-orange?style=for-the-badge&logo=ethereum)
@@ -11,7 +13,11 @@
 
 *Tokenizing sustainability, incentivizing impact, building the future*
 
+[📖 Documentation](docs/) | [🏗️ Architecture](docs/ARCHITECTURE_DIAGRAMS.md) | [🎨 Visual Identity](docs/VISUAL_IDENTITY_GUIDE.md)
+
 </div>
+
+---
 
 ## 🚀 **What is Ecosystem Degov?**
 
@@ -21,20 +27,28 @@ Ecosystem Degov is a **comprehensive blockchain-based ESG token ecosystem** that
 
 Transform sustainability from a cost center into a **profit center** by creating economic incentives for ESG practices through blockchain technology and AI orchestration.
 
+---
+
 ## 🏗️ **Ecosystem Architecture**
 
 ### 🪙 **8 Interconnected Tokens**
 
-| Token | Symbol | Purpose | Utility |
-|-------|--------|---------|---------|
-| **Green Sustainability Token** | GST | Principal ecosystem token | Rewards, governance, staking |
-| **AI Ethics Token** | AET | Ethical AI incentives | AI agent rewards, ethics scoring |
-| **EcoToken** | ECT | Environmental impact | Carbon credits, green actions |
-| **EcoScore** | ECS | ESG scoring system | Performance measurement |
-| **Carbon Credit** | CCR | Carbon offset trading | Carbon market participation |
-| **EcoCertificate** | ECR | Achievement certificates | NFT-based certifications |
-| **EcoStake** | EST | Staking rewards | Liquidity provision |
-| **EcoGem** | EGM | Premium rewards | Exclusive benefits |
+<div align="center">
+
+| Icon | Token | Symbol | Purpose | Color |
+|------|-------|--------|---------|-------|
+| ![GST](docs/assets/tokens/gst_token_icon.png) | **Green Sustainability Token** | GST | Principal ecosystem token | 🟢 #00C853 |
+| ![AET](docs/assets/tokens/aet_token_icon.png) | **AI Ethics Token** | AET | Ethical AI incentives | 🟣 #7C4DFF |
+| ![ECT](docs/assets/tokens/ect_token_icon.png) | **EcoToken** | ECT | Environmental impact | 🔵 #00BFA5 |
+| ![ECS](docs/assets/tokens/ecs_token_icon.png) | **EcoScore** | ECS | ESG scoring system | 🔷 #2196F3 |
+| ![CCR](docs/assets/tokens/ccr_token_icon.png) | **Carbon Credit** | CCR | Carbon offset trading | ⚫ #607D8B |
+| ![ECR](docs/assets/tokens/ecr_token_icon.png) | **EcoCertificate** | ECR | Achievement certificates | 🟡 #FFB300 |
+| **EcoStake** | EST | Staking rewards | 🔵 #00E5FF |
+| **EcoGem** | EGM | Premium rewards | 🔴 #E91E63 |
+
+</div>
+
+> **Note**: Token icons for EST and EGM will be added soon. See our [Visual Identity Guide](docs/VISUAL_IDENTITY_GUIDE.md) for complete branding assets.
 
 ### 🤖 **Trinity AI Agent: The Orchestrator**
 
@@ -45,6 +59,15 @@ Our **autonomous AI agent** manages the complexity of the ecosystem:
 - **⚡ Auto-optimization**: Dynamic token parameter adjustment
 - **🔧 Self-healing**: Automatic problem detection and resolution
 - **🌐 MCP Integration**: Connects with LLMs, IDEs, and external services
+
+**Trinity Architecture** - Three Pillars:
+1. **Satoshi Pillar**: Trust Score System & Security
+2. **Vitalik Pillar**: Composability & Cross-Chain
+3. **ESG Pillar**: Impact Scoring & Metrics
+
+> 📊 See detailed [Architecture Diagrams](docs/ARCHITECTURE_DIAGRAMS.md) for system visualization
+
+---
 
 ## ✨ **Key Features**
 
@@ -75,6 +98,8 @@ contract TrinityGSTToken is ERC20, Ownable, Pausable {
 - **GuardDrive**: Mobility telemetry integration
 - **Smart Cart**: Retail sustainability tracking
 
+---
+
 ## 🛠️ **Technical Stack**
 
 ### 🦀 **Backend (Rust)**
@@ -94,6 +119,8 @@ contract TrinityGSTToken is ERC20, Ownable, Pausable {
 - **MCP Server**: Model Context Protocol integration
 - **LLM Integration**: OpenAI, Anthropic, Claude
 - **IDE Integration**: VSCode, Cursor, IntelliJ
+
+---
 
 ## 🚀 **Getting Started**
 
@@ -129,6 +156,8 @@ cp .env.example .env
 # Add your private keys, RPC URLs, etc.
 ```
 
+---
+
 ## 📊 **Ecosystem Metrics**
 
 ### 🎯 **Token Distribution**
@@ -147,6 +176,8 @@ cp .env.example .env
 - **Scalability**: 10,000+ TPS
 - **Security**: Audited smart contracts
 - **Uptime**: 99.9% availability
+
+---
 
 ## 🌍 **Use Cases**
 
@@ -168,6 +199,8 @@ cp .env.example .env
 - **Bias Detection**: Identify and correct AI biases
 - **Human Alignment**: Ensure AI serves human values
 
+---
+
 ## 🔮 **Roadmap**
 
 ### 🎯 **Phase 1: Foundation (Q1 2025)**
@@ -187,6 +220,8 @@ cp .env.example .env
 - 🌍 **Enterprise Partnerships**: Corporate adoption
 - 🌍 **Advanced AI**: Predictive analytics
 - 🌍 **Ecosystem Maturity**: Full feature set
+
+---
 
 ## 🤝 **Contributing**
 
@@ -219,9 +254,23 @@ cargo run
 - **Documentation**: Technical writing
 - **Testing**: Quality assurance
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+---
+
+## 📚 **Documentation**
+
+- [🏗️ Architecture Diagrams](docs/ARCHITECTURE_DIAGRAMS.md) - System architecture and data flow
+- [🎨 Visual Identity Guide](docs/VISUAL_IDENTITY_GUIDE.md) - Branding and design assets
+- [📖 Full Documentation](docs/) - Complete project documentation
+
+---
+
 ## 📄 **License**
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
 
 ## 🙏 **Acknowledgments**
 
@@ -230,6 +279,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Rust Community**: High-performance backend
 - **ESG Pioneers**: Sustainability visionaries
 - **AI Researchers**: Ethical AI development
+
+---
 
 ## 📞 **Support & Community**
 
@@ -248,5 +299,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [⭐ Star us on GitHub](https://github.com/SH1W4/ecosystem-degov) | [🐦 Follow us on Twitter](https://twitter.com/EcosystemDegov) | [📺 Subscribe on YouTube](https://youtube.com/ecosystem-degov)
 
 *Building a sustainable future through blockchain technology and AI orchestration*
+
+---
+
+Made with 💚 by the Ecosystem Degov Team
 
 </div>
