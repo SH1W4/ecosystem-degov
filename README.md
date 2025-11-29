@@ -29,24 +29,6 @@ Transform sustainability from a cost center into a **profit center** by creating
 
 ---
 
-## 🏗️ **Ecosystem Architecture**
-
-### 🪙 **8 Interconnected Tokens**
-
-<div align="center">
-
-| Icon | Token | Symbol | Purpose | Color |
-|------|-------|--------|---------|-------|
-- **🧠 Intelligent Management**: 24/7 ecosystem monitoring and optimization
-- **📊 Real-time Analytics**: Continuous ESG metrics analysis
-- **⚡ Auto-optimization**: Dynamic token parameter adjustment
-- **🔧 Self-healing**: Automatic problem detection and resolution
-- **🌐 MCP Integration**: Connects with LLMs, IDEs, and external services
-
-**Trinity Architecture** - Three Pillars:
-1. **Satoshi Pillar**: Trust Score System & Security
-2. **Vitalik Pillar**: Composability & Cross-Chain
-3. **ESG Pillar**: Impact Scoring & Metrics
 
 > 📊 See detailed [Architecture Diagrams](docs/ARCHITECTURE_DIAGRAMS.md) for system visualization
 
