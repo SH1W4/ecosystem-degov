@@ -145,47 +145,6 @@
         "IESToken"
       ]
     },
-    "C:\\Users\\João\\Desktop\\PROJETOS\\02_ORGANIZATIONS\\ecosystem-degov\\contracts\\tokens\\SimpleAETToken.sol": {
-      "lastModificationDate": 1760276792915,
-      "contentHash": "2fda098c3ab7868c4cc8d26d30b21956",
-      "sourceName": "contracts/tokens/SimpleAETToken.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/security/ReentrancyGuard.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "SimpleAETToken"
-      ]
-    },
     "C:\\Users\\João\\Desktop\\PROJETOS\\02_ORGANIZATIONS\\ecosystem-degov\\node_modules\\@openzeppelin\\contracts\\security\\ReentrancyGuard.sol": {
       "lastModificationDate": 1760287901289,
       "contentHash": "1535f8c0c68463f8c1b5239f7584e71f",
@@ -529,47 +488,6 @@
       ],
       "artifacts": [
         "TrinityGSTToken"
-      ]
-    },
-    "C:\\Users\\João\\Desktop\\PROJETOS\\02_ORGANIZATIONS\\ecosystem-degov\\contracts\\tokens\\SimpleGSTToken.sol": {
-      "lastModificationDate": 1760274016839,
-      "contentHash": "1e3fb89fed667ee76ef2917be270e5e0",
-      "sourceName": "contracts/tokens/SimpleGSTToken.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/security/ReentrancyGuard.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.19"
-      ],
-      "artifacts": [
-        "SimpleGSTToken"
       ]
     },
     "C:\\Users\\João\\Desktop\\PROJETOS\\02_ORGANIZATIONS\\ecosystem-degov\\contracts\\tokens\\NFENFT.sol": {
