@@ -21,22 +21,6 @@
 
 ## 🚀 **What is Ecosystem Degov?**
 
-Ecosystem Degov is a **comprehensive blockchain-based ESG token ecosystem** that tokenizes environmental, social, and governance metrics to create sustainable economic incentives. Our ecosystem combines **8 interconnected tokens** with **AI-powered orchestration** to revolutionize how we measure, reward, and incentivize sustainable practices.
-
-### 🌟 **Core Vision**
-
-Transform sustainability from a cost center into a **profit center** by creating economic incentives for ESG practices through blockchain technology and AI orchestration.
-
----
-
-
-> 📊 See detailed [Architecture Diagrams](docs/ARCHITECTURE_DIAGRAMS.md) for system visualization
-
----
-
-## ✨ **Key Features**
-
-### 🌱 **ESG Tokenization**
 ```solidity
 // Example: GST Token with Trinity Architecture
 contract TrinityGSTToken is ERC20, Ownable, Pausable {
